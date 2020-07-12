@@ -2,7 +2,6 @@
 <html lang="en">
 <%- include('../partials/_head') %>
 
-<<<<<<< HEAD
   <body>
     <%- include('../partials/_header') %>
     <div class="products-container">
@@ -21,22 +20,8 @@
         <a href="#">Add New Product</a>
       </div>
       <%}%>
-=======
-<body>
-  <%- include('../partials/_header') %>
-  <div class="products-container">
-    <% for(let product of products){ %>
-    <!--  -->
-    <div class="product">
-      <img src="<%= product.img %>" alt="" />
-      <section>
-        <p><%= product.name %></p>
-        <p>$<%= product.price %></p>
-      </section>
->>>>>>> submaster
     </div>
     <!--  -->
-    <% } %>
   </div>
 </body>
 
