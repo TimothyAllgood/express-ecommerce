@@ -42,10 +42,10 @@ app.use((req, res, next) => {
   next();
 });
 // populate db
-db.Products.collection.insertMany(productsArr, (err, data) => {
+/* db.Products.collection.insertMany(productsArr, (err, data) => {
   console.log("added provided products data")
   mongoose.connection.close();
-});
+}); */
 // Routes
 // Index Route
 
