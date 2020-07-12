@@ -48,6 +48,7 @@ db.Products.collection.insertMany(productsArr, (err, data) => {
 });
 // Routes
 // Index Route
+
 app.get('/', (req, res) => {
   res.render('index');
 });
