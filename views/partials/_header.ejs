@@ -1,4 +1,7 @@
 <nav>
+  <div class="logo">
+    <h2>Express Ecommerce</h2>
+  </div>
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/users">Users</a></li>
@@ -12,8 +15,8 @@
       </form>
     </li>
     <%} else {%>
-    <li><a href="/users/create">Sign Up</a></li>
-    <li><a href="/users/signin">Sign In</a></li>
+    <li><a href="/users/signin" class="account-button">Sign In</a></li>
+    <li><a href="/users/create" class="account-button">Sign Up</a></li>
     <% } %>
   </ul>
 </nav>

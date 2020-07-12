@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-	<%- include('../partials/_head') %>
+  <%- include('../partials/_head') %>
 
-	<body>
-		<%- include('../partials/_header') %>
-		<form action="/users" method="POST">
-			<input type="text" name="username" placeholder="username" />
-			<input type="text" name="password" placeholder="password" />
-			<button type="submit">Submit</button>
-		</form>
-	</body>
+  <body>
+    <%- include('../partials/_header') %>
+    <main class="account">
+      <form action="/users" method="POST">
+        <input type="text" name="username" placeholder="username" />
+        <input type="text" name="password" placeholder="password" />
+        <button type="submit">Sign Up</button>
+        <p>
+          Already have an account?
+          <br />
+          <a href="/users/signin">Sign In</a>
+        </p>
+      </form>
+    </main>
+  </body>
 </html>
