@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head') %>
+
+  <body>
+    <%- include('../partials/_header') %>
+    <main class="account">
+      <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+        <section>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value="<%= user.firstName %>"
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value="<%= user.lastName %>"
+          />
+        </section>
+        <input
+          type="text"
+          name="email"
+          placeholder="Enter Email"
+          value="<%= user.email %>"
+        />
+        <input
+          type="text"
+          name="password"
+          placeholder="Enter Password"
+          value="<%= user.password %>"
+        />
+        <button type="submit">Update User</button>
+      </form>
+    </main>
+  </body>
+</html>

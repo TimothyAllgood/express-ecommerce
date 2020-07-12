@@ -30,7 +30,7 @@ app.use(
 app.use((req, res, next) => {
   // Logged In User Info available anywhere
   app.locals.userId = req.session.userId;
-  app.locals.username = req.session.username;
+  app.locals.name = req.session.name;
   app.locals.admin = req.session.admin;
   next();
 });
