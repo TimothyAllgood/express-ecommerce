@@ -46,6 +46,8 @@ This simple Ecommerce CMS, allows users to view a page of products. Users with A
 - Model
 - Views
 - Controller
+- 404 & Middleware
+- Populating DB and implentation
 
 ### Timothy Allgood
 
@@ -55,3 +57,5 @@ This simple Ecommerce CMS, allows users to view a page of products. Users with A
 - Controller
 - Authentication
 - CSS
+- 404 & Middleware
+- Populating DB and implentation
