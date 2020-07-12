@@ -5,6 +5,7 @@
   <body>
     <%- include('../partials/_header') %>
     <main>
+      <% if(admin){ %>
       <h1>Edit Product</h1>
       <form action="/products/ %>" method="POST">
         Name:
@@ -15,6 +16,9 @@
 
         <button type=" submit">Create Product</button>
       </form>
+      <% } else { %>
+      <h2>You do not have permission to create a product.</h2>
+      <% } %>
     </main>
   </body>
 </html>
