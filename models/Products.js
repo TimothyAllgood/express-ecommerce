@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: new Date().toLocaleDateString(),
   },
-  img: String,
+  img: { type: String, default: 'https://picsum.photos/150/150' },
+  createdBy: String,
   category: Array,
 });
 

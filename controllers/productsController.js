@@ -26,7 +26,7 @@ router.get(`/`, (req, res) => {
 // this product route needs to go before :index one or else index will think new is an index
 // form page to create new products
 router.get(`/create`, (req, res) => {
-  res.render(`create`);
+  res.render(`products/create`);
 });
 // ---------------------------------- CREATE Product  ---------------------------------------------/
 router.post(`/`, (req, res) => {
@@ -35,7 +35,7 @@ router.post(`/`, (req, res) => {
   db.Products.create(req.body, (err, newProduct) => {
     if (err) return console.log(err);
 
-    res.redirect(`index`);
+    res.redirect(`/products`);
   });
 });
 
