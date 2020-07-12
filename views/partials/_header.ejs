@@ -8,7 +8,7 @@
     <li><a href="/products">Products</a></li>
     <%if(userId) {%>
     <!-- If user is logged in display -->
-    <li><a href="/users/<%= userId%>">Hello, <%= username%></a></li>
+    <li><a href="/users/<%= userId%>">Hello, <%= name%></a></li>
     <li>
       <form action="/users/logout" method="POST">
         <button type="submit">Log Out</button>

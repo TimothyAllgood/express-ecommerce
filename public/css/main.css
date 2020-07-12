@@ -28,6 +28,7 @@ body {
   min-height: 100vh;
   -webkit-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#101010", endColorstr="#444444", GradientType=1);
   color: #f1f1f1;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a,
@@ -69,6 +70,12 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
+main,
+nav {
+  width: calc(((20vw - 200px) * 3) + (207.5px * 4));
+  margin: 0 auto;
+}
+
 /* for divs my css is shit feel free to change */
 /* Products Index */
 .products-container {
@@ -76,6 +83,22 @@ nav ul li a:hover {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: calc(21vw * 4 + 25px);
+  margin: 0 auto;
+}
+
+.products-header {
+  width: calc(((20vw - 200px) * 3) + (207.5px * 4));
+  margin: 10px auto;
+}
+
+.products-divider {
+  width: calc(
+    ((20vw - 200px) * 3) + (207.5px * 4)
+  ); /* Sets width equal to four products*/
+  height: 2px;
+  background: #f1f1f1;
+  margin: 0 auto;
 }
 
 .product {
@@ -85,12 +108,48 @@ nav ul li a:hover {
   align-items: center;
   width: 20vw;
   height: 300px;
-  border: solid 2px darkblue;
+
   margin: 5px;
+  font-weight: 600;
+}
+
+.product .image {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.product img {
+  width: 200px;
+  height: 200px;
+}
+
+.product .image:hover .image-overlay {
+  opacity: 1;
+}
+
+.product .image-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(62, 0, 250, 0.8);
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product .image-overlay p {
+  border: 2px solid #f1f1f1;
+  border-radius: 50px;
+  padding: 5px 10px;
 }
 
 .product section {
-  width: 150px;
+  margin-top: 10px;
+  width: 200px;
   display: flex;
   justify-content: space-between;
 }

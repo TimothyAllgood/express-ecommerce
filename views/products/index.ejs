@@ -4,11 +4,21 @@
 
   <body>
     <%- include('../partials/_header') %>
+    <section class="products-header">
+      <h3>All Products</h3>
+    </section>
+    <div class="products-divider"></div>
     <div class="products-container">
       <% for(let product of products){ %>
       <!--  -->
       <div class="product">
-        <img src="<%= product.img %>" alt="" />
+        <div class="image">
+          <img src="<%= product.img %>" alt="" />
+          <div class="image-overlay">
+            <p>View Product</p>
+          </div>
+        </div>
+        
         <section>
           <p><%= product.name %></p>
           <p>$<%= product.price %></p>

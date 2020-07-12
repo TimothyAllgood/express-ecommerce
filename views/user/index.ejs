@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-	<%- include('../partials/_head') %>
+  <%- include('../partials/_head') %>
 
-	<body>
-		<%- include('../partials/_header') %>
-		<h1>Users</h1>
-		<% if(users.length){ %> <% for(let user of users){ %>
-		<a href="/users/<%= user._id %>"><%= user.username %> </a>
-		<% } %> <% } else{ %>
-		<h3>No users found</h3>
-		<% } %>
-	</body>
+  <body>
+    <%- include('../partials/_header') %>
+    <h1>Users</h1>
+    <% if(users.length){ %> <% for(let user of users){ %>
+    <a href="/users/<%= user._id %>"><%= user.email %> </a>
+    <% } %> <% } else{ %>
+    <h3>No users found</h3>
+    <% } %>
+  </body>
 </html>

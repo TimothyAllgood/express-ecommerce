@@ -3,21 +3,26 @@
 
 <body>
 	<%- include('../partials/_header') %>
+	<main>
 	<% if(user && userId){if(userId.toString() === user._id.toString() || admin){ %> 
-		<%=user.username %> 
+		<p>First Name: <%= user.firstName %></p>
+		<p>Last Name: <%= user.lastName %></p>
+		<p>Email: <%= user.email %></p>
+		<a href="/users/edit/<%= user._id %> ">Edit User</a>
 		<!-- Display Form To Change User To Admin -->
 		<%if (user.isAdmin) {%>
-			<p><%= user.username %> has admin privileges</p>
+			<p><%= user.firstName %> has admin privileges</p>
 		<%} else if(admin) {%>
 			<form action="/users/<%= user._id %>?_method=PUT" method="POST">
-				<button type="submit">Add <%= user.username %> as admin</button>
+				<button type="submit">Add <%= user.firstName %> as admin</button>
 			</form>
 		<%}%>	
 	<% } else{ %>
-		<h3>You are not <%= user.username %>! Get out of here! </h3>
+		<h3>You are not <%= user.firstName %>! Get out of here! </h3>
 	<% } } else { %>
 		<h3>You must login to view user profiles.</h3>
 	<% } %>
+</main>
 </body>
 
 </html>
