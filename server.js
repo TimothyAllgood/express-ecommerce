@@ -3,7 +3,9 @@ const app = express(); // set app as express
 const session = require('express-session'); // require express session for middleware
 const methodOverride = require('method-override'); // require method override for full CRUD functionality
 const productsController = require(`./controllers/productsController`); // require products controller for product routes
+
 const usersController = require('./controllers/usersController'); // user controller for user routes
+const productsArr = require('./models/productsArr');
 const PORT = process.env.PORT || 4000; // set port
 app.set('view engine', 'ejs'); // set a view engine, ejs to display and render
 
@@ -38,7 +40,11 @@ app.use((req, res, next) => {
   app.locals.title = req.url.replace('/', '| '); // Sets title to url replacing / with |
   next();
 });
-
+// populate db
+Products.collection.insertMany(productsArr, (err, data) => {
+  console.log("added provided products data")
+  mongoose.connection.close();
+});
 // Routes
 // Index Route
 app.get('/', (req, res) => {
