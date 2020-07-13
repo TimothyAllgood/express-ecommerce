@@ -1,10 +1,36 @@
-<nav>
+<nav class="desktop-nav">
 	<div class="logo">
 		<h2>Express Ecommerce</h2>
 	</div>
 	<ul>
 		<li><a href="/users">Users</a></li>
 		<li><a href="/products">Products</a></li>
+		<%if(userId) {%>
+		<!-- If user is logged in display -->
+		<div class="profile-menu">
+			<li class="profile-info">
+				<a href="/users/<%= userId%>">Hello, <%= name%></a>
+			</li>
+			<div class="profile-hover">
+				<li>
+					<form action="/users/logout" method="POST">
+						<button type="submit">Log Out</button>
+					</form>
+				</li>
+			</div>
+		</div>
+		<%} else {%>
+		<li><a href="/users/signin" class="account-button">Sign In</a></li>
+		<li><a href="/users/create" class="account-button">Sign Up</a></li>
+		<% } %>
+	</ul>
+</nav>
+
+<nav class="mobile-nav">
+	<div class="logo">
+		<h2>Express Ecommerce</h2>
+	</div>
+	<ul>
 		<%if(userId) {%>
 		<!-- If user is logged in display -->
 		<div class="profile-menu">

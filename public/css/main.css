@@ -59,31 +59,29 @@ a:visited {
 
 /* NAVIGATION */
 
-nav {
+.mobile-nav {
+	display: none;
+}
+
+.desktop-nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-/* NAVIGATION */
-
-nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-nav ul {
+.desktop-nav ul,
+.mobile-nav ul {
 	list-style-type: none;
 	display: flex;
 	margin: 25px 0;
 }
 
-nav ul li {
+.desktop-nav ul li,
+.mobile-nav ul li {
 	padding: 0 10px;
 }
 
-nav ul li a:hover {
+.desktop-nav ul li a:hover {
 	color: #a3a3a3;
 	text-decoration: underline;
 }
@@ -108,7 +106,7 @@ nav ul li a:hover {
 }
 
 main,
-nav {
+.desktop-nav {
 	width: calc(((20vw - 200px) * 3) + (207.5px * 4));
 	margin: 0 auto;
 }
@@ -116,12 +114,6 @@ nav {
 .account-button:hover {
 	border: 2px solid #a3a3a3;
 	text-decoration: none;
-}
-
-main,
-nav {
-	width: calc(((20vw - 200px) * 3) + (207.5px * 4));
-	margin: 0 auto;
 }
 
 /* for divs my css is shit feel free to change */
@@ -278,18 +270,9 @@ nav {
 }
 
 /* Media Queries */
-
-/* Breakpoints 
-1100px 
-600px
-*/
-
 @media only screen and (max-width: 1250px) {
-	body {
-		background: blue;
-	}
 	main,
-	nav,
+	.desktop-nav,
 	.products-header,
 	.products-divider {
 		width: calc(((20vw - 200px) * 2) + (207.5px * 3));
@@ -301,11 +284,8 @@ nav {
 }
 
 @media only screen and (max-width: 1000px) {
-	body {
-		background: blue;
-	}
 	main,
-	nav,
+	.desktop-nav,
 	.products-header,
 	.products-divider {
 		width: 665px;
@@ -322,11 +302,8 @@ nav {
 }
 
 @media only screen and (max-width: 800px) {
-	body {
-		background: blue;
-	}
 	main,
-	nav,
+	.desktop-nav,
 	.products-header,
 	.products-divider {
 		width: 500px;
@@ -342,14 +319,21 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
-	body {
-		background: blue;
-	}
 	main,
-	nav,
 	.products-header,
 	.products-divider {
 		width: 500px;
+	}
+
+	/* Mobile Nav */
+	.desktop-nav {
+		display: none;
+	}
+
+	.mobile-nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.products-container {
@@ -377,10 +361,4 @@ nav {
 	.product section {
 		width: 400px;
 	}
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	width: calc(21vw * 4 + 25px);
-	margin: 0 auto;
 }
