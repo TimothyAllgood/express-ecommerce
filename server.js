@@ -20,46 +20,42 @@ app.use(express.urlencoded({ extended: false })); // body parser for req feedbac
 
 // Express Session
 app.use(
-  session({
-    secret: 'keyboard cat', // i dont know some kind of cat? meow
-    resave: false,
-    saveUninitialized: true,
-  })
+	session({
+		secret: 'keyboard cat', // i dont know some kind of cat? meow
+		resave: false,
+		saveUninitialized: true,
+	})
 );
 
 // Sets EJS Variables - Can call these from any ejs view using the varibale name eq, app.locals.title => title on ejs view
 app.use((req, res, next) => {
-  // Logged In User Info available anywhere
-  app.locals.userId = req.session.userId;
-  app.locals.name = req.session.name;
-  app.locals.admin = req.session.admin;
-  next();
+	// Logged In User Info available anywhere
+	app.locals.userId = req.session.userId;
+	app.locals.name = req.session.name;
+	app.locals.admin = req.session.admin;
+	next();
 });
 
 // Custom Middleware
 // Sets Title Dynamically
 app.use((req, res, next) => {
-  app.locals.title = req.url.replace('/', '| '); // Sets title to url replacing / with |
-  next();
+	app.locals.title = req.url.replace('/', '| '); // Sets title to url replacing / with |
+	next();
 });
-// populate db
-/* db.Products.collection.insertMany(productsArr, (err, data) => {
-  console.log("added provided products data")
-  mongoose.connection.close();
-}); */
+
 // Routes
 // Index Route
 
 app.get('/', (req, res) => {
-  res.render('index');
+	res.render('index');
 });
 app.use(`/products`, productsController);
 app.use('/users', usersController);
 
 app.get(`*`, (req, res) => {
-  res.render(`404`, {
-    req: req.url,
-  });
+	res.render(`404`, {
+		req: req.url,
+	});
 });
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
