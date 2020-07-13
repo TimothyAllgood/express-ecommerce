@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 	app.locals.userId = req.session.userId;
 	app.locals.name = req.session.name;
 	app.locals.admin = req.session.admin;
+	app.locals.length = req.session.length;
 	next();
 });
 

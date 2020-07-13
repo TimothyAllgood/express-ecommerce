@@ -45,13 +45,13 @@ router.post(`/`, (req, res) => {
 // ---------------------------------- SHOW SINGLE PRODUCT  ---------------------------------------------//
 // single route to product to show
 router.get('/:id', function (req, res) {
-	db.Products.findById(req.params.id, (err, foundProducts) => {
+	db.Products.findById(req.params.id, (err, foundProduct) => {
 		if (err) return console.log(err);
 		console.log(req.params.id);
-		console.log(foundProducts);
-		res.render('show.ejs', {
+		console.log(foundProduct);
+		res.render('products/show.ejs', {
 			//second param must be an object
-			products: foundProducts,
+			product: foundProduct,
 		});
 	});
 });

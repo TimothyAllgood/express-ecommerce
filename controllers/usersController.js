@@ -106,7 +106,8 @@ router.post('/signin', (req, res) => {
 				req.session.userId = currentUser._id; // Sets session userId to loggedIn userId
 				req.session.email = currentUser.email; // Sets session email to loggedIn email
 				req.session.name = currentUser.firstName + ' ' + currentUser.lastName;
-				req.session.admin = currentUser.isAdmin; // Sets session admin status to loggedIn admin status
+				req.session.admin = currentUser.isAdmin; // Sets session admin status to loggedIn admin
+				req.session.length = currentUser.cart.length; // Cart Length
 				res.redirect(`/users/${req.session.userId}`); // Redirects to logged in users page
 			} else {
 				// If password doesn't match
@@ -148,8 +149,60 @@ router.put('/:id', (req, res) => {
 router.post('/logout', (req, res) => {
 	req.session.userId = null;
 	req.session.email = null;
+	req.session.name = null;
 	req.session.admin = null;
+	req.session.length = null;
 	res.redirect('/');
+});
+
+// Cart
+// Adds Item To User Cart
+router.put('/:id/addToCart/:name&:price&:productId', (req, res) => {
+	db.User.findByIdAndUpdate(
+		req.params.id,
+		{
+			$push: {
+				cart: {
+					productName: req.params.name,
+					productPrice: req.params.price,
+					productId: req.params.productId,
+				},
+			},
+		},
+		{ new: true },
+		(err, user) => {
+			if (err) console.log(err);
+			req.session.length++;
+			res.redirect(`/users/${user._id}/cart`);
+		}
+	);
+});
+
+// Remove from User Cart
+router.put('/:id/removeFromCart/:name', (req, res) => {
+	db.User.findByIdAndUpdate(
+		req.params.id,
+		{
+			$pull: { cart: { productName: req.params.name } },
+		},
+		{ new: true },
+		(err, user) => {
+			if (err) console.log(err);
+			req.session.length++;
+			res.send('hello');
+		}
+	);
+});
+
+// Display User Cart
+router.get('/:id/cart', (req, res) => {
+	db.User.findById(req.params.id, (err, foundUser) => {
+		if (err) console.log(err);
+		res.render('user/cart', {
+			user: foundUser,
+			cartItems: foundUser.cart,
+		});
+	});
 });
 
 module.exports = router;

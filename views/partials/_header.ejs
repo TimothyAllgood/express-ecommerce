@@ -19,6 +19,12 @@
 				</li>
 			</div>
 		</div>
+		<a href="/users/<%= userId %>/cart">
+			<div class="cart">
+				<i class="fas fa-shopping-cart"></i>
+				<p><%= length || 0 %></p>
+			</div>
+		</a>
 		<%} else {%>
 		<li><a href="/users/signin" class="account-button">Sign In</a></li>
 		<li><a href="/users/create" class="account-button">Sign Up</a></li>
