@@ -1,5 +1,4 @@
 <nav>
-<<<<<<< HEAD
 	<div class="logo">
 		<h2>Express Ecommerce</h2>
 	</div>
@@ -25,26 +24,4 @@
 		<li><a href="/users/create" class="account-button">Sign Up</a></li>
 		<% } %>
 	</ul>
-=======
-  <div class="logo">
-    <h2>Express Ecommerce</h2>
-  </div>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/users">Users</a></li>
-    <li><a href="/products">Products</a></li>
-    <%if(userId) {%>
-    <!-- If user is logged in display -->
-    <li><a href="/users/<%= userId%>">Hello, <%= name%></a></li>
-    <li>
-      <form action="/users/logout" method="POST">
-        <button type="submit">Log Out</button>
-      </form>
-    </li>
-    <%} else {%>
-    <li><a href="/users/signin" class="account-button">Sign In</a></li>
-    <li><a href="/users/create" class="account-button">Sign Up</a></li>
-    <% } %>
-  </ul>
->>>>>>> 8fc34f400ca2081359d5a7db604a19443f1450a6
 </nav>

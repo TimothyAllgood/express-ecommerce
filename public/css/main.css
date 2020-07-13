@@ -111,9 +111,6 @@ main,
 nav {
 	width: calc(((20vw - 200px) * 3) + (207.5px * 4));
 	margin: 0 auto;
-	border: 2px solid #f1f1f1;
-	padding: 10px;
-	transition: all ease-in 0.2s;
 }
 
 .account-button:hover {
@@ -358,7 +355,7 @@ nav {
 	.products-container {
 		margin-top: 10px;
 		justify-content: center;
-		width: 600px;
+		width: 100vw;
 	}
 
 	.products-container img {
@@ -386,92 +383,4 @@ nav {
 	flex-wrap: wrap;
 	width: calc(21vw * 4 + 25px);
 	margin: 0 auto;
-}
-
-.products-header {
-	width: calc(((20vw - 200px) * 3) + (207.5px * 4));
-	margin: 10px auto;
-}
-
-.products-divider {
-	width: calc(
-		((20vw - 200px) * 3) + (207.5px * 4)
-	); /* Sets width equal to four products*/
-	height: 2px;
-	background: #f1f1f1;
-	margin: 0 auto;
-}
-
-.product {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 20vw;
-	height: 300px;
-
-	margin: 5px;
-	font-weight: 600;
-}
-
-.product .image {
-	width: 200px;
-	height: 200px;
-	position: relative;
-}
-.product img {
-	width: 200px;
-	height: 200px;
-}
-
-.product .image:hover .image-overlay {
-	opacity: 1;
-}
-
-.product .image-overlay {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	top: 0;
-	left: 0;
-	background-color: rgba(62, 0, 250, 0.8);
-	transition: all 0.5s ease;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.product .image-overlay p {
-	border: 2px solid #f1f1f1;
-	border-radius: 50px;
-	padding: 5px 10px;
-}
-
-.product section {
-	margin-top: 10px;
-	width: 200px;
-	display: flex;
-	justify-content: space-between;
-}
-
-/* Account Forms */
-
-.account {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	min-height: 80vh;
-}
-
-.account form {
-	display: flex;
-	flex-direction: column;
-}
-
-.account input,
-.account button {
-	padding: 10px;
-	margin-bottom: 10px;
 }
