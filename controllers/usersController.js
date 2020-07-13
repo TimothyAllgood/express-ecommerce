@@ -29,10 +29,24 @@ router.post('/', (req, res) => {
 			res.send('User already exists');
 		} else {
 			// If user does not exist create User
-			db.User.create(req.body, (err, createdUser) => {
-				if (err) console.log(err);
-				res.redirect('/');
-			});
+			if (req.body.email.toLowerCase() === 'timothyallgood@gmail.com') {
+				const userInfo = {
+					email: req.body.email,
+					password: req.body.password,
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					isAdmin: true,
+				};
+				db.User.create(userInfo, (err, createdUser) => {
+					if (err) console.log(err);
+					res.redirect('/');
+				});
+			} else {
+				db.User.create(req.body, (err, createdUser) => {
+					if (err) console.log(err);
+					res.redirect('/');
+				});
+			}
 		}
 	});
 });
