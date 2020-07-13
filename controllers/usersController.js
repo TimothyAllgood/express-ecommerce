@@ -63,6 +63,32 @@ router.put('/:id', (req, res) => {
 	);
 });
 
+// Displays user update form
+router.get('/edit/:id', (req, res) => {
+	db.User.findById(req.params.id, (err, foundUser) => {
+		if (err) console.log(err);
+		res.render('user/edit', { user: foundUser });
+	});
+});
+
+// Edits User
+router.put('/:id', (req, res) => {
+	// Checks If User already Exists
+	db.User.findByIdAndUpdate(
+		req.params.id,
+		req.body,
+		{ new: true },
+		(err, updatedUser) => {
+			req.session.userId = updatedUser._id; // Sets session userId to loggedIn userId
+			req.session.email = updatedUser.email; // Sets session email to loggedIn email
+			req.session.name = updatedUser.firstName + ' ' + updatedUser.lastName;
+			req.session.admin = updatedUser.isAdmin; // Sets session admin status to loggedIn admin status
+			if (err) console.log(err);
+			res.redirect(`/users/${updatedUser._id}`);
+		}
+	);
+});
+
 // Displays Sign In Form
 router.get('/signin', (req, res) => {
 	res.render('user/signin');

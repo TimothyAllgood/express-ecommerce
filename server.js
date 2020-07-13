@@ -29,17 +29,9 @@ app.use(
 
 // Sets EJS Variables - Can call these from any ejs view using the varibale name eq, app.locals.title => title on ejs view
 app.use((req, res, next) => {
-	// Logged In User Info available anywhere
 	app.locals.userId = req.session.userId;
 	app.locals.name = req.session.name;
 	app.locals.admin = req.session.admin;
-	next();
-});
-
-// Custom Middleware
-// Sets Title Dynamically
-app.use((req, res, next) => {
-	app.locals.title = req.url.replace('/', '| '); // Sets title to url replacing / with |
 	next();
 });
 
