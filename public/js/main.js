@@ -8,6 +8,10 @@ const reviews = document.querySelectorAll('.review');
 const ratingStr = document.querySelectorAll('.rating');
 const reviewStarsContain = document.querySelectorAll('.review .review-rating');
 
+// TextAreas
+const textArea = document.querySelector('.product-text');
+const form = document.querySelector('.product-form');
+
 // Amount of stars equal to rating in db are updated with proper styling
 for (let i = 0; i < reviewStarsContain.length; i++) {
 	const reviewStars = reviewStarsContain[i].querySelectorAll(`i`);
@@ -20,9 +24,10 @@ for (let i = 0; i < reviewStarsContain.length; i++) {
 	}
 }
 
-// Changes colors of amount of stars clicked
-rating.addEventListener('click', handleStarUpdate);
-
+if (rating) {
+	// Changes colors of amount of stars clicked
+	rating.addEventListener('click', handleStarUpdate);
+}
 function handleStarUpdate(e) {
 	let value = null;
 	if (e.target.type === 'radio') {
@@ -43,4 +48,14 @@ function changeStar(star, oldIcon, newIcon, color) {
 	star.classList.remove(oldIcon);
 	star.classList.add(newIcon);
 	star.style.color = color;
+}
+
+form.addEventListener('submit', handleTextArea);
+
+function handleTextArea(e) {
+	textAreaFinal = textArea.value.replace('/n', '<br/>');
+	textArea.value = textAreaFinal;
+	alert(textArea.value);
+	e.preventDefault();
+	this.submit();
 }

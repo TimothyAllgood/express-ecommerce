@@ -7,14 +7,22 @@
 		<main class="account">
 			<form action="/users" method="POST">
 				<section>
-					<input type="text" name="firstName" placeholder="First Name" />
-					<input type="text" name="lastName" placeholder="Last Name" />
+					<input
+						type="text"
+						name="firstName"
+						placeholder="First Name"
+						required
+					/>
+					<input type="text" name="lastName" placeholder="Last Name" required />
 				</section>
-				<input type="email" name="email" placeholder="Enter Email" />
+				<input type="email" name="email" placeholder="Enter Email" required />
 				<input
 					type="text"
 					name="password"
 					placeholder="Enter Password"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+					oninvalid="this.setCustomValidity('Password must be at least 8 characters long and contain one uppercase/lowercase letter and one number.')"
+					oninput="this.setCustomValidity('')"
 					required
 				/>
 				<button type="submit">Sign Up</button>

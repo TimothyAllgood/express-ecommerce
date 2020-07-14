@@ -21,7 +21,9 @@
 						<h4>About</h4>
 						<section class="divider"></section>
 						<p>
-							<%= product.description %>
+							<% product.description =
+							product.description.replace(/(?:\\[rn]|[\r\n]+)+/g, "\<br />") %>
+							<%- product.description %>
 						</p>
 					</section>
 					<% if(userId) {%>
