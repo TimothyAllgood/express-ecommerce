@@ -3,7 +3,8 @@
 
 <body>
 	<%- include('../partials/_header') %>
-	<main>
+	<main class="user-container">
+		<h2>Account Info</h2>
 	<% if(user && userId){if(userId.toString() === user._id.toString() || admin){ %> 
 		<p>First Name: <%= user.firstName %></p>
 		<p>Last Name: <%= user.lastName %></p>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../partials/_head') %>
+
+	<body>
+		<%- include('../partials/_header') %>
+		<main>
+			<section class="cart-container">
+				<!-- Total -->
+				<% let total = 0%>
+				<!--  Displays User Cart -->
+				<% for(let item of cartItems){ %>
+				<!--  Displays Each Item -->
+				<a href="/products/<%= item.productId %>"><%= item.productName %></a>
+				<p>$<%= item.productPrice %></p>
+				<% total = parseInt(total) + parseInt(item.productPrice) %>
+				<!-- Remove Item from Cart -->
+				<form
+					action="/users/<%= user._id %>/removeFromCart/<%= item.productName %>?_method=PUT"
+					method="POST"
+				>
+					<button type="submit">X</button>
+				</form>
+				<%} %>
+				<p>Total: $<%= total %></p>
+			</section>
+		</main>
+	</body>
+</html>

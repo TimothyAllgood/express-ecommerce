@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/_head') %>
+	<%- include('../partials/_head') %>
 
-<body>
-    <%- include('../partials/_header') %>
-</body>
-
+	<body>
+		<%- include('../partials/_header') %>
+		<!-- Single Product -->
+		<main class="product-info-container">
+			<div class="product-image">
+				<img src="<%= product.img%> " alt="" />
+			</div>
+			<div class="product-info">
+				<h3><%= product.name %></h3>
+				<section class="divider"></section>
+				<p>Price: $<%= product.price %></p>
+				<h4>About</h4>
+				<section class="divider"></section>
+				<p>
+					<%= product.description %>
+				</p>
+				<% if(userId) {%>
+				<!-- If user is logged in let them add to cart -->
+				<form
+					action="/users/<%= userId %>/addToCart/<%= product.name %>&<%= product.price %>&<%= product._id %>?_method=PUT"
+					method="POST"
+				>
+					<button type="submit">Add To Cart</button>
+				</form>
+				<% } %>
+			</div>
+		</main>
+	</body>
 </html>
