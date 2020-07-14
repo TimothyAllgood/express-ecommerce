@@ -25,11 +25,16 @@
       </section>
     </div>
     <!--  -->
+    <form method="POST" action="/products/<%= product._id %>?_method=DELETE">
+      <button type="submit">Delete</button>
+      </form>
     <% } %> <%if(admin){ %>
     <div class="product">
       <a href="/products/create">Add New Product</a>
     </div>
+    
     <%}%>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <form method="POST" action="/products/<%= element._id %>?_method=DELETE">
     <button type="submit">Delete</button>
@@ -42,6 +47,9 @@
       <form method="POST" action="/products/<%= id %>?_method=DELETE">
     <button type="submit">Delete</button>
     </form>
+=======
+      
+>>>>>>> submaster
   </div>
   <!--  -->
 >>>>>>> submaster

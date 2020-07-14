@@ -12,45 +12,48 @@ const methodOverride = require(`method-override`);
 router.use(methodOverride(`_method`));
 // get requests ------------------------------- ROUTE TO INDEX
 router.get(`/`, (req, res) => {
-  // step one: get the data
-  db.Products.find({}, (err, allProducts) => {
-    if (err) return console.log(err);
+	// step one: get the data
+	db.Products.find({}, (err, allProducts) => {
+		if (err) return console.log(err);
 
-    console.log(`All Products: `, allProducts);
-    res.render(`products/index`, {
-      products: allProducts,
-    });
-  });
+		console.log(`All Products: `, allProducts);
+		res.render(`products/index`, {
+			products: allProducts,
+		});
+	});
+	// db.Products.create(db.productsArray, (err, newProds) => {
+	// 	res.send(newProds);
+	// });
 });
 // ---------------------------------- GO TO CREATE PRODUCT PAGE  ---------------------------------------------//
 // this product route needs to go before :index one or else index will think new is an index
 // form page to create new products
 router.get(`/create`, (req, res) => {
-  res.render(`products/create`);
+	res.render(`products/create`);
 });
 // ---------------------------------- CREATE Product  ---------------------------------------------/
 router.post(`/`, (req, res) => {
-  console.log(req.body);
+	console.log(req.body);
 
-  db.Products.create(req.body, (err, newProduct) => {
-    if (err) return console.log(err);
+	db.Products.create(req.body, (err, newProduct) => {
+		if (err) return console.log(err);
 
-    res.redirect(`/products`);
-  });
+		res.redirect(`/products`);
+	});
 });
 
 // ---------------------------------- SHOW SINGLE PRODUCT  ---------------------------------------------//
 // single route to product to show
 router.get('/:id', function (req, res) {
-  db.Products.findById(req.params.id, (err, foundProducts) => {
-    if (err) return console.log(err);
-    console.log(req.params.id);
-    console.log(foundProducts);
-    res.render('show.ejs', {
-      //second param must be an object
-      products: foundProducts,
-    });
-  });
+	db.Products.findById(req.params.id, (err, foundProduct) => {
+		if (err) return console.log(err);
+		console.log(req.params.id);
+		console.log(foundProduct);
+		res.render('products/show.ejs', {
+			//second param must be an object
+			product: foundProduct,
+		});
+	});
 });
 
 // ---------------------------------- SHOW ALL PRODUCTS  ---------------------------------------------//
@@ -64,40 +67,45 @@ router.get('/:id', function (req, res) {
 
 // EDIT PRODUCT(PART ONE) go to edit page:
 router.get(`/:id/edit`, (req, res) => {
-  db.Products.findById(req.params.id, (err, foundProducts) => {
-    if (err) return console.log(err);
-    res.render(`edit`, {
-      editProduct: foundProducts,
-    });
-  });
+	db.Products.findById(req.params.id, (err, foundProducts) => {
+		if (err) return console.log(err);
+		res.render(`edit`, {
+			editProduct: foundProducts,
+		});
+	});
 });
 
 // (also needs method override like delete) EDIT PRODUCT (PART TWO: UPDATE) send update/edit:
 // this time instead of ?_method=DELETE we use ?_method=PUT
 router.put(`/:id`, (req, res) => {
-  productsArray[req.params.id] = req.body;
+	productsArray[req.params.id] = req.body;
 
-  db.Products.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, foundProducts) => {
-      if (err) return console.log(err);
-      res.redirect(`/index`);
-    }
-  );
+	db.Products.findByIdAndUpdate(
+		req.params.id,
+		req.body,
+		{ new: true },
+		(err, foundProducts) => {
+			if (err) return console.log(err);
+			res.redirect(`/index`);
+		}
+	);
 });
 
 // ---------------------------------- DELETE  ---------------------------------------------//
 // delete one product (destroy) route - uses method overrride
 router.delete('/:id', (req, res) => {
+<<<<<<< HEAD
 
   db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
     if (err) return console.log(err);
+=======
+	db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
+		if (err) return console.log(err);
+>>>>>>> submaster
 
-    console.log(`Deleted: `, deletedProducts);
-    res.redirect('/products');
-  });
+		console.log(`Deleted: `, deletedProducts);
+		res.redirect('/products');
+	});
 });
 
 module.exports = router;
