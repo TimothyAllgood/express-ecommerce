@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   min-height: 100%;
   margin: 0;
@@ -15,6 +14,7 @@ body {
   justify-content: center;
   padding: 0.5em;
   overflow: auto;
+  flex-flow: row wrap;
 }
 
 canvas {
