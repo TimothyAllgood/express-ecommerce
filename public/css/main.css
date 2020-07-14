@@ -8,53 +8,36 @@
 }
 
 body {
-	background: hsla(0, 0%, 6%, 1);
-	background: linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	background: -moz-linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	background: -webkit-linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#101010', endColorstr='#444444', GradientType=1);
-	min-height: 100vh;
-	-webkit-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#101010", endColorstr="#444444", GradientType=1);
-	color: #f1f1f1;
+	background: #f1f1f1;
+	color: #101010;
 	font-family: Arial, Helvetica, sans-serif;
-	background: hsla(0, 0%, 6%, 1);
-	background: linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	background: -moz-linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	background: -webkit-linear-gradient(
-		45deg,
-		hsla(0, 0%, 6%, 1) 0%,
-		hsla(0, 0%, 27%, 1) 100%
-	);
-	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#101010', endColorstr='#444444', GradientType=1);
 	min-height: 100vh;
-	-webkit-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#101010", endColorstr="#444444", GradientType=1);
-	color: #f1f1f1;
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 a,
 a:visited {
-	color: #f1f1f1;
+	color: #101010;
+}
+
+/* BUTTONS */
+
+button {
+	background: #a3a3a3;
+	color: inherit;
+	border: 1px solid #101010;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	padding: 15px;
+	transition: all ease-in 0.2s;
+	-webkit-transition: all ease-in 0.2s;
+	-moz-transition: all ease-in 0.2s;
+	-ms-transition: all ease-in 0.2s;
+	-o-transition: all ease-in 0.2s;
+}
+
+button:hover {
+	background: #808080;
 }
 
 /* NAVIGATION */
@@ -86,13 +69,13 @@ a:visited {
 	text-decoration: underline;
 }
 
-.account-button {
-	border: 2px solid #f1f1f1;
+.desktop-nav ul li a.account-button {
+	border: 2px solid #101010;
 	padding: 10px;
 	transition: all ease-in 0.2s;
 }
 
-.account-button:hover {
+.desktop-nav ul li a.account-button:hover {
 	border: 2px solid #a3a3a3;
 	text-decoration: none;
 }
@@ -105,6 +88,10 @@ a:visited {
 .profile-hover button:hover {
 	background-color: #a3a3a3;
 }
+
+/* .cart-container {
+	margin: 0;
+} */
 
 .cart {
 	cursor: pointer;
@@ -136,11 +123,6 @@ main,
 	margin: 0 auto;
 }
 
-.account-button:hover {
-	border: 2px solid #a3a3a3;
-	text-decoration: none;
-}
-
 /* for divs my css is shit feel free to change */
 /* Products Index */
 .products-container {
@@ -162,8 +144,8 @@ main,
 		((20vw - 200px) * 3) + (207.5px * 4)
 	); /* Sets width equal to four products*/
 	height: 2px;
-	background: #f1f1f1;
-	margin: 0 auto;
+	background: #101010;
+	margin: 25px auto;
 }
 
 .product {
@@ -173,7 +155,6 @@ main,
 	align-items: center;
 	width: 20vw;
 	height: 300px;
-
 	margin: 5px;
 	font-weight: 600;
 }
@@ -207,6 +188,7 @@ main,
 }
 
 .product .image-overlay p {
+	color: #f1f1f1;
 	border: 2px solid #f1f1f1;
 	border-radius: 50px;
 	padding: 5px 10px;
@@ -218,22 +200,32 @@ main,
 	display: flex;
 	justify-content: space-between;
 }
+
+.product form {
+	width: 200px;
+	margin-top: 15px;
+}
+
+.product form button {
+	width: 100%;
+}
 /* SINGLE PRODUCT */
 
 .product-info-container {
+	margin-top: 100px;
 	display: flex;
 }
 
 .product-info .divider {
 	width: 100%;
 	height: 2px;
-	background-color: #f1f1f1;
+	background-color: #101010;
 	margin: 10px 0;
 }
 
 .product-image {
 	width: 20vw;
-	margin-right: 50px;
+	margin-right: 100px;
 }
 
 .product-image img {
@@ -243,9 +235,75 @@ main,
 
 .product-info {
 	width: 50%;
+	display: flex;
+	flex-direction: column;
 }
 
 .product-info p {
+	margin-bottom: 10px;
+}
+
+.product-info .product-desc {
+	margin-top: 50px;
+	margin-bottom: auto;
+}
+
+.light-text {
+	color: #808080;
+}
+
+/* Reviews */
+
+.reviews {
+	margin-top: 50px;
+}
+
+.reviews .divider {
+	width: 82%;
+	height: 2px;
+	background-color: #101010;
+	margin: 10px 0;
+}
+
+.reviews .review {
+	margin-bottom: 25px;
+}
+
+.reviews .review p {
+	margin: 5px 0;
+}
+
+[type='radio'] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+[type='radio'] + i {
+	cursor: pointer;
+}
+
+[type='radio']:checked + i {
+	color: goldenrod;
+}
+
+.reviews .review-form form {
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+}
+
+.reviews textarea {
+	resize: none;
+	margin: 10px 0;
+}
+
+.reviews button {
+	margin-bottom: 50px;
+}
+
+.reviews .review-form h3 {
 	margin-bottom: 10px;
 }
 
@@ -324,6 +382,26 @@ main,
 	margin-bottom: 10px;
 }
 
+/* CART */
+
+.cart-container {
+	margin: 15px 0;
+}
+
+.cart-container .cart-item {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.cart-container button {
+	margin-bottom: 10px;
+}
+
+.total {
+	text-align: right;
+}
+
 /* Media Queries */
 @media only screen and (max-width: 1250px) {
 	main,
@@ -358,10 +436,21 @@ main,
 
 @media only screen and (max-width: 800px) {
 	main,
-	.desktop-nav,
 	.products-header,
 	.products-divider {
 		width: 500px;
+	}
+
+	.desktop-nav {
+		display: none;
+	}
+
+	.mobile-nav {
+		width: 500px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.products-container {
@@ -380,17 +469,6 @@ main,
 		width: 500px;
 	}
 
-	/* Mobile Nav */
-	.desktop-nav {
-		display: none;
-	}
-
-	.mobile-nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
 	.products-container {
 		margin-top: 10px;
 		justify-content: center;
@@ -404,7 +482,7 @@ main,
 
 	.product {
 		width: 400px;
-		height: 450px;
+		height: 500px;
 		margin: 10px 15px;
 	}
 

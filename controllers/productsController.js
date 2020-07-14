@@ -94,13 +94,35 @@ router.put(`/:id`, (req, res) => {
 // ---------------------------------- DELETE  ---------------------------------------------//
 // delete one product (destroy) route - uses method overrride
 router.delete('/:id', (req, res) => {
-
 	db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
 		if (err) return console.log(err);
 
 		console.log(`Deleted: `, deletedProducts);
 		res.redirect('/products');
 	});
+});
+
+// ------------------------------------------- REVIEWS
+
+router.put('/:id/addReview/:name', (req, res) => {
+	console.log(req.body);
+	db.Products.findByIdAndUpdate(
+		req.params.id,
+		{
+			$push: {
+				reviews: {
+					review: req.body.review,
+					author: req.params.name,
+					rating: req.body.ratingquality,
+				},
+			},
+		},
+		{ new: true },
+		(err, updatedProduct) => {
+			if (err) console.log(err);
+			res.redirect(`/products/${updatedProduct._id}`);
+		}
+	);
 });
 
 module.exports = router;

@@ -5,25 +5,28 @@
 	<body>
 		<%- include('../partials/_header') %>
 		<main>
+			<h3>Shopping Cart</h3>
 			<section class="cart-container">
 				<!-- Total -->
 				<% let total = 0%>
 				<!--  Displays User Cart -->
 				<% for(let item of cartItems){ %>
 				<!--  Displays Each Item -->
-				<a href="/products/<%= item.productId %>"><%= item.productName %></a>
-				<p>$<%= item.productPrice %></p>
+				<div class="cart-item">
+					<a href="/products/<%= item.productId %>"><%= item.productName %></a>
+					<p>$<%= item.productPrice %></p>
+				</div>
 				<% total = parseInt(total) + parseInt(item.productPrice) %>
 				<!-- Remove Item from Cart -->
 				<form
 					action="/users/<%= user._id %>/removeFromCart/<%= item.productName %>?_method=PUT"
 					method="POST"
 				>
-					<button type="submit">X</button>
+					<button type="submit">Delete Item</button>
 				</form>
 				<%} %>
-				<p>Total: $<%= total %></p>
 			</section>
+			<p class="total">Total: $<%= total %></p>
 		</main>
 	</body>
 </html>

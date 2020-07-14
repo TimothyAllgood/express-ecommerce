@@ -1,6 +1,6 @@
 <nav class="desktop-nav">
 	<div class="logo">
-		<h2>Express Ecommerce</h2>
+		<a href="/products"><h2>Express Ecommerce</h2></a>
 	</div>
 	<ul>
 		<li><a href="/users">Users</a></li>
@@ -19,7 +19,7 @@
 				</li>
 			</div>
 		</div>
-		<a href="/users/<%= userId %>/cart">
+		<a href="/users/<%= userId %>/cart" class="cart-btn-container">
 			<div class="cart">
 				<i class="fas fa-shopping-cart"></i>
 				<p><%= length || 0 %></p>
