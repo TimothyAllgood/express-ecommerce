@@ -4,12 +4,13 @@
 <body>
 	<%- include('../partials/_header') %>
 	<main class="user-container">
-		<h2>Account Info</h2>
+		<section class="hello-user"><h2>Welcome Back, <%= user.firstName %> </h2></section>
+		<h3>Account Information</h3>
 	<% if(user && userId){if(userId.toString() === user._id.toString() || admin){ %> 
-		<p>First Name: <%= user.firstName %></p>
-		<p>Last Name: <%= user.lastName %></p>
-		<p>Email: <%= user.email %></p>
-		<a href="/users/edit/<%= user._id %> ">Edit User</a>
+		<p><strong>First Name:</strong> <%= user.firstName %></p>
+		<p><strong> Name: </strong><%= user.lastName %></p>
+		<p><strong>Email:</strong> <%= user.email %></p>
+		<a href="/users/edit/<%= user._id %>" class="button">Edit User</a>
 		<!-- Display Form To Change User To Admin -->
 		<%if (user.isAdmin) {%>
 			<p><%= user.firstName %> has admin privileges</p>
