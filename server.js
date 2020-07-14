@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 // Index Route
 
 app.get('/', (req, res) => {
-	res.render('index');
+	res.render('/products');
 });
 app.use(`/products`, productsController);
 app.use('/users', usersController);

@@ -22,31 +22,38 @@ router.get('/create', (req, res) => {
 // Creates new user (sign up)
 router.post('/', (req, res) => {
 	// Checks If User already Exists
+	// Sets admin by default to false, true if any of these email addresses are submitted
+	function setAdmin(adminValue) {
+		const adminCheck = {
+			'dzag17188@gmail.com': true,
+			'timothyallgood@gmail.com': true,
+			'@generalassemb.ly': true,
+			default: false,
+		};
+		if (adminValue.includes('@generalassemb.ly')) {
+			adminCheck[adminValue] = true;
+		}
+
+		return adminCheck[adminValue] || adminCheck['default'];
+	}
 	db.User.findOne({ email: req.body.email }, (err, existingUser) => {
 		if (err) console.log(err);
 		if (existingUser) {
 			// If user exists do this
-			res.send('User already exists');
+			res.redirect('/users/create');
 		} else {
 			// If user does not exist create User
-			if (req.body.email.toLowerCase() === 'timothyallgood@gmail.com') {
-				const userInfo = {
-					email: req.body.email,
-					password: req.body.password,
-					firstName: req.body.firstName,
-					lastName: req.body.lastName,
-					isAdmin: true,
-				};
-				db.User.create(userInfo, (err, createdUser) => {
-					if (err) console.log(err);
-					res.redirect('/');
-				});
-			} else {
-				db.User.create(req.body, (err, createdUser) => {
-					if (err) console.log(err);
-					res.redirect('/');
-				});
-			}
+			const userInfo = {
+				email: req.body.email,
+				password: req.body.password,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				isAdmin: setAdmin(req.body.email),
+			};
+			db.User.create(userInfo, (err, createdUser) => {
+				if (err) console.log(err);
+				res.redirect('/');
+			});
 		}
 	});
 });
@@ -113,7 +120,7 @@ router.get('/signin', (req, res) => {
 router.post('/signin', (req, res) => {
 	db.User.findOne({ email: req.body.email }, (err, currentUser) => {
 		if (err) console.log(err);
-		if (currentUser.email) {
+		if (currentUser) {
 			// If user exists
 			if (currentUser.password === req.body.password) {
 				// Checks if password matches password for user in database
