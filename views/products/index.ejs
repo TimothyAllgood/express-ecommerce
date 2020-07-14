@@ -12,11 +12,13 @@
       <% for(let product of products){ %>
       <!--  -->
       <div class="product">
+        <a href="/products/<%= product._id %>">
         <div class="image">
           <img src="<%= product.img %>" alt="" />
           <div class="image-overlay">
             <p>View Product</p>
           </div>
+        </a>
         </div>
         
         <section>

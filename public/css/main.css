@@ -210,6 +210,21 @@ main,
 	margin-bottom: 10px;
 }
 
+[type='radio'] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+[type='radio'] + i {
+	cursor: pointer;
+}
+
+[type='radio']:checked + i {
+	color: goldenrod;
+}
+
 /* Product Forms */
 .product-form {
 	display: flex;

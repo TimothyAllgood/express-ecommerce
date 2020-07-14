@@ -102,4 +102,27 @@ router.delete('/:id', (req, res) => {
 	});
 });
 
+// ------------------------------------------- REVIEWS
+
+router.put('/:id/addReview/:name', (req, res) => {
+	console.log(req.body);
+	db.Products.findByIdAndUpdate(
+		req.params.id,
+		{
+			$push: {
+				reviews: {
+					review: req.body.review,
+					author: req.params.name,
+					rating: req.body.ratingquality,
+				},
+			},
+		},
+		{ new: true },
+		(err, updatedProduct) => {
+			if (err) console.log(err);
+			res.redirect(`/products/${updatedProduct._id}`);
+		}
+	);
+});
+
 module.exports = router;
