@@ -95,7 +95,7 @@ router.delete('/:id', (req, res) => {
     if (err) return console.log(err);
 
     console.log(`Deleted: `, deletedProducts);
-    res.redirect('/index');
+    res.redirect('/products');
   });
 });
 

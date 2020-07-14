@@ -2,36 +2,39 @@
 <html lang="en">
 <%- include('../partials/_head') %>
 
-  <body>
-    <%- include('../partials/_header') %>
-    <section class="products-header">
-      <h3>All Products</h3>
-    </section>
-    <div class="products-divider"></div>
-    <div class="products-container">
-      <% for(let product of products){ %>
-      <!--  -->
-      <div class="product">
-        <div class="image">
-          <img src="<%= product.img %>" alt="" />
-          <div class="image-overlay">
-            <p>View Product</p>
-          </div>
+<body>
+  <%- include('../partials/_header') %>
+  <section class="products-header">
+    <h3>All Products</h3>
+  </section>
+  <div class="products-divider"></div>
+  <div class="products-container">
+    <% for(let product of products){ %>
+    <!--  -->
+    <div class="product">
+      <div class="image">
+        <img src="<%= product.img %>" alt="" />
+        <div class="image-overlay">
+          <p>View Product</p>
         </div>
-        
-        <section>
-          <p><%= product.name %></p>
-          <p>$<%= product.price %></p>
-        </section>
       </div>
-      <!--  -->
-      <% } %> <%if(admin){ %>
-      <div class="product">
-        <a href="/products/create">Add New Product</a>
-      </div>
-      <%}%>
+
+      <section>
+        <p><%= product.name %></p>
+        <p>$<%= product.price %></p>
+      </section>
     </div>
     <!--  -->
+    <% } %> <%if(admin){ %>
+    <div class="product">
+      <a href="/products/create">Add New Product</a>
+    </div>
+    <%}%>
+      <form method="POST" action="/products/<%= id %>?_method=DELETE">
+    <button type="submit">Delete</button>
+    </form>
+  </div>
+  <!--  -->
   </div>
 </body>
 
