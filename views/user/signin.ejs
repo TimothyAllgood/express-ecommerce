@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_head') %>
+	<%- include('../partials/_head') %>
 
-  <body>
-    <%- include('../partials/_header') %>
-    <main class="account">
-      <form action="/users/signin" method="POST">
-        <input type="text" name="email" placeholder="Enter Email" />
-        <input type="text" name="password" placeholder="Enter Password" />
-        <button type="submit">Sign In</button>
-        <p>
-          Don't have an account yet?
-          <br />
-          <a href="/users/create">Create an account.</a>
-        </p>
-      </form>
-    </main>
-  </body>
+	<body>
+		<%- include('../partials/_header') %>
+		<main class="account">
+			<form action="/users/signin" method="POST">
+				<input type="email" name="email" placeholder="Enter Email" required />
+				<input
+					type="text"
+					name="password"
+					placeholder="Enter Password"
+					required
+				/>
+				<button type="submit">Sign In</button>
+				<p>
+					Don't have an account yet?
+					<br />
+					<a href="/users/create">Create an account.</a>
+				</p>
+			</form>
+		</main>
+	</body>
 </html>

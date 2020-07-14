@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_head') %>
+	<%- include('../partials/_head') %>
 
-  <body>
-    <%- include('../partials/_header') %>
-    <main class="account">
-      <form action="/users" method="POST">
-        <section>
-          <input type="text" name="firstName" placeholder="First Name" />
-          <input type="text" name="lastName" placeholder="Last Name" />
-        </section>
-        <input type="text" name="email" placeholder="Enter Email" />
-        <input type="text" name="password" placeholder="Enter Password" />
-        <button type="submit">Sign Up</button>
-        <p>
-          Already have an account?
-          <br />
-          <a href="/users/signin">Sign In</a>
-        </p>
-      </form>
-    </main>
-  </body>
+	<body>
+		<%- include('../partials/_header') %>
+		<main class="account">
+			<form action="/users" method="POST">
+				<section>
+					<input
+						type="text"
+						name="firstName"
+						placeholder="First Name"
+						required
+					/>
+					<input type="text" name="lastName" placeholder="Last Name" required />
+				</section>
+				<input type="email" name="email" placeholder="Enter Email" required />
+				<input
+					type="text"
+					name="password"
+					placeholder="Enter Password"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+					oninvalid="this.setCustomValidity('Password must be at least 8 characters long and contain one uppercase/lowercase letter and one number.')"
+					oninput="this.setCustomValidity('')"
+					required
+				/>
+				<button type="submit">Sign Up</button>
+				<p>
+					Already have an account?
+					<br />
+					<a href="/users/signin">Sign In</a>
+				</p>
+			</form>
+		</main>
+	</body>
 </html>

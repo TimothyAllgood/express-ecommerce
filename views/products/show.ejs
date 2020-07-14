@@ -14,11 +14,16 @@
 					<h3><%= product.name %></h3>
 					<section class="divider"></section>
 					<p class="light-text"><em>Price: $<%= product.price %></em></p>
+					<div class="mobile-product-image">
+						<img src="<%= product.img%> " alt="" />
+					</div>
 					<section class="product-desc">
 						<h4>About</h4>
 						<section class="divider"></section>
 						<p>
-							<%= product.description %>
+							<% product.description =
+							product.description.replace(/(?:\\[rn]|[\r\n]+)+/g, "\<br />") %>
+							<%- product.description %>
 						</p>
 					</section>
 					<% if(userId) {%>

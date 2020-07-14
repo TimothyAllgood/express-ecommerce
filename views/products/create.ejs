@@ -6,8 +6,9 @@
 		<%- include('../partials/_header') %>
 		<main>
 			<% if(admin){ %>
-			<h1>Add Product</h1>
+
 			<form action="/products/ %>" method="POST" class="product-form">
+				<section><h2>Add New Product</h2></section>
 				<input type="text" name="name" placeholder="Name" />
 				<input type="number" name="price" placeholder="Price" />
 				<textarea
@@ -15,6 +16,7 @@
 					name="description"
 					placeholder="Description"
 					rows="10"
+					class="product-text"
 				></textarea>
 				<input type="text" name="createdBy" value="<%=userId%>" hidden />
 				<button type=" submit">Create Product</button>

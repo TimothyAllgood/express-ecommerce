@@ -21,7 +21,8 @@ a:visited {
 
 /* BUTTONS */
 
-button {
+button,
+.button {
 	background: #a3a3a3;
 	color: inherit;
 	border: 1px solid #101010;
@@ -36,8 +37,17 @@ button {
 	-o-transition: all ease-in 0.2s;
 }
 
-button:hover {
+.button {
+	display: inline-block;
+}
+
+button:hover,
+.button:hover {
 	background: #808080;
+}
+
+.button:hover {
+	color: #101010 !important;
 }
 
 /* NAVIGATION */
@@ -228,6 +238,10 @@ main,
 	margin-right: 100px;
 }
 
+.mobile-product-image {
+	display: none;
+}
+
 .product-image img {
 	width: 100%;
 	height: auto;
@@ -259,7 +273,7 @@ main,
 }
 
 .reviews .divider {
-	width: 82%;
+	width: calc((20vw + 100px) + 50%);
 	height: 2px;
 	background-color: #101010;
 	margin: 10px 0;
@@ -289,7 +303,7 @@ main,
 }
 
 .reviews .review-form form {
-	width: 250px;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
 }
@@ -326,11 +340,20 @@ main,
 .product-form textarea {
 	padding: 10px;
 	margin-bottom: 10px;
+	width: 50%;
 }
 
 .product-form textarea {
 	resize: none;
 	white-space: pre-wrap;
+}
+
+.product-form section {
+	width: 50%;
+	padding: 25px 0;
+	background-color: #0db39e;
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 /* Users */
@@ -359,6 +382,12 @@ main,
 .users-container a:hover,
 .user-container a:hover {
 	color: #a3a3a3;
+}
+
+.hello-user {
+	background-color: #0db39e;
+	padding: 25px;
+	margin-bottom: 25px;
 }
 
 /* Account Forms */
@@ -432,6 +461,12 @@ main,
 		width: 200px;
 		margin: 10px 15px;
 	}
+
+	.product-image {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 }
 
 @media only screen and (max-width: 800px) {
@@ -460,13 +495,44 @@ main,
 		width: 200px;
 		margin: 10px 15px;
 	}
+
+	.product-info-container,
+	.reviews {
+		width: 90%;
+		margin: 10px auto;
+	}
+
+	.product-info {
+		width: 100%;
+	}
+
+	.product-image {
+		display: none;
+	}
+
+	.mobile-product-image {
+		display: initial;
+	}
+
+	.mobile-product-image img {
+		width: 100%;
+	}
+
+	.reviews .review-form form {
+		width: 100%;
+	}
 }
 
 @media only screen and (max-width: 600px) {
+	.mobile-nav {
+		width: 90%;
+		margin: 0 auto;
+	}
 	main,
 	.products-header,
 	.products-divider {
-		width: 500px;
+		width: 90%;
+		margin: 0 auto;
 	}
 
 	.products-container {

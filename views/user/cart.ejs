@@ -5,10 +5,11 @@
 	<body>
 		<%- include('../partials/_header') %>
 		<main>
+			<!-- Total -->
+
+			<% let total = 0%> <% if (user._id.toString() === userId.toString()) { %>
 			<h3>Shopping Cart</h3>
 			<section class="cart-container">
-				<!-- Total -->
-				<% let total = 0%>
 				<!--  Displays User Cart -->
 				<% for(let item of cartItems){ %>
 				<!--  Displays Each Item -->
@@ -24,9 +25,12 @@
 				>
 					<button type="submit">Delete Item</button>
 				</form>
-				<%} %>
+				<% } %>
 			</section>
 			<p class="total">Total: $<%= total %></p>
+			<% } else {%>
+			<h2>You must login to view your cart.</h2>
+			<% } %>
 		</main>
 	</body>
 </html>
