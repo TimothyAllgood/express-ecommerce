@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 			};
 			db.User.create(userInfo, (err, createdUser) => {
 				if (err) console.log(err);
-				res.redirect('/');
+				res.redirect('/products');
 			});
 		}
 	});

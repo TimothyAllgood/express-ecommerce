@@ -15,15 +15,11 @@ router.get(`/`, (req, res) => {
 	// step one: get the data
 	db.Products.find({}, (err, allProducts) => {
 		if (err) return console.log(err);
-
 		console.log(`All Products: `, allProducts);
 		res.render(`products/index`, {
 			products: allProducts,
 		});
 	});
-	// db.Products.create(db.productsArray, (err, newProds) => {
-	// 	res.send(newProds);
-	// });
 });
 // ---------------------------------- GO TO CREATE PRODUCT PAGE  ---------------------------------------------//
 // this product route needs to go before :index one or else index will think new is an index
