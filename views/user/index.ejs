@@ -3,9 +3,9 @@
 	<%- include('../partials/_head') %>
 
 	<body>
+		<%- include('../partials/_header') %>
 		<main>
 			<section class="users-container">
-				<%- include('../partials/_header') %>
 				<h1>Users</h1>
 				<% if(users.length){ %> <% for(let user of users){ %>
 				<a href="/users/<%= user._id %>"><%= user.email %> </a>

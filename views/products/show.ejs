@@ -5,29 +5,85 @@
 	<body>
 		<%- include('../partials/_header') %>
 		<!-- Single Product -->
-		<main class="product-info-container">
-			<div class="product-image">
-				<img src="<%= product.img%> " alt="" />
-			</div>
-			<div class="product-info">
-				<h3><%= product.name %></h3>
+		<main>
+			<section class="product-info-container">
+				<div class="product-image">
+					<img src="<%= product.img%> " alt="" />
+				</div>
+				<div class="product-info">
+					<h3><%= product.name %></h3>
+					<section class="divider"></section>
+					<p class="light-text"><em>Price: $<%= product.price %></em></p>
+					<section class="product-desc">
+						<h4>About</h4>
+						<section class="divider"></section>
+						<p>
+							<%= product.description %>
+						</p>
+					</section>
+					<% if(userId) {%>
+					<!-- If user is logged in let them add to cart -->
+					<form
+						action="/users/<%= userId %>/addToCart/<%= product.name %>&<%= product.price %>&<%= product._id %>?_method=PUT"
+						method="POST"
+					>
+						<button type="submit">Add To Cart</button>
+					</form>
+					<% } %>
+				</div>
+			</section>
+			<section class="reviews">
+				<h2>Reviews</h2>
 				<section class="divider"></section>
-				<p>Price: $<%= product.price %></p>
-				<h4>About</h4>
-				<section class="divider"></section>
-				<p>
-					<%= product.description %>
-				</p>
-				<% if(userId) {%>
-				<!-- If user is logged in let them add to cart -->
-				<form
-					action="/users/<%= userId %>/addToCart/<%= product.name %>&<%= product.price %>&<%= product._id %>?_method=PUT"
-					method="POST"
-				>
-					<button type="submit">Add To Cart</button>
-				</form>
-				<% } %>
-			</div>
+				<% for(let review of product.reviews) {%>
+				<!-- Display Reviews -->
+				<div class="review">
+					<p>Reviewed by: <%= review.author %></p>
+					<div class="review-rating">
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+					</div>
+					<span id="<%= review.rating %>" class="rating"></span>
+					<p><%= review.review %></p>
+				</div>
+				<% } %> <% if(userId) {%>
+				<section class="review-form">
+					<h3>Review <%= product.name %></h3>
+					<form
+						action="/products/<%= product._id %>/addReview/<%= name %> ?_method=PUT"
+						method="POST"
+					>
+						<div class="rating-container">
+							<label>
+								<input type="radio" name="ratingquality" value="1" />
+								<i class="far fa-star"></i>
+							</label>
+							<label>
+								<input type="radio" name="ratingquality" value="2" />
+								<i class="far fa-star"></i>
+							</label>
+							<label>
+								<input type="radio" name="ratingquality" value="3" />
+								<i class="far fa-star"></i>
+							</label>
+							<label>
+								<input type="radio" name="ratingquality" value="4" />
+								<i class="far fa-star"></i>
+							</label>
+							<label>
+								<input type="radio" name="ratingquality" value="5" />
+								<i class="far fa-star"></i>
+							</label>
+						</div>
+						<textarea name="review" cols="30" rows="10"></textarea>
+						<button type="submit">Submit Review</button>
+					</form>
+				</section>
+				<% }%>
+			</section>
 		</main>
 	</body>
 </html>

@@ -12,27 +12,30 @@
     <% for(let product of products){ %>
     <!--  -->
     <div class="product">
+      <a href="/products/<%= product._id %>">
       <div class="image">
-        <img src="<%= product.img %>" alt="" />
+         <img src="<%= product.img %>" alt="" />
         <div class="image-overlay">
           <p>View Product</p>
         </div>
       </div>
-
+    </a>
       <section>
         <p><%= product.name %></p>
         <p>$<%= product.price %></p>
       </section>
+      <%if(admin){ %>
+      <form method="POST" action="/products/<%= product._id %>?_method=DELETE">
+        <button type="submit">Delete</button>
+        </form>
+        <%}%>
     </div>
     <!--  -->
-    <form method="POST" action="/products/<%= product._id %>?_method=DELETE">
-      <button type="submit">Delete</button>
-      </form>
+    
     <% } %> <%if(admin){ %>
     <div class="product">
       <a href="/products/create">Add New Product</a>
     </div>
-    
     <%}%>
       
   </div>
