@@ -30,11 +30,13 @@
       <a href="/products/create">Add New Product</a>
     </div>
     <%}%>
-      <form method="POST" action="/products/<%= id %>?_method=DELETE">
+      <form method="POST" action="/products/<%= element._id %>?_method=DELETE">
     <button type="submit">Delete</button>
     </form>
+    <a href="/products/<%= element._id %>/edit"> <button type="submit">Edit</button></a>
+    <hr />
   </div>
-  <!--  -->
+
   </div>
 </body>
 
