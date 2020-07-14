@@ -94,14 +94,9 @@ router.put(`/:id`, (req, res) => {
 // ---------------------------------- DELETE  ---------------------------------------------//
 // delete one product (destroy) route - uses method overrride
 router.delete('/:id', (req, res) => {
-<<<<<<< HEAD
 
-  db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
-    if (err) return console.log(err);
-=======
 	db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
 		if (err) return console.log(err);
->>>>>>> submaster
 
 		console.log(`Deleted: `, deletedProducts);
 		res.redirect('/products');
