@@ -202,8 +202,8 @@ router.put('/:id/removeFromCart/:name', (req, res) => {
 		{ new: true },
 		(err, user) => {
 			if (err) console.log(err);
-			req.session.length++;
-			res.send('hello');
+			req.session.length--;
+			res.redirect(`/users/${user._id}/cart`);
 		}
 	);
 });
