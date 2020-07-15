@@ -13,7 +13,6 @@
 }
 
 body {
-	background: #f1f1f1;
 	color: #101010;
 	font-family: 'Montserrat', 'Arial', sans-serif;
 	min-height: 100vh;
@@ -25,7 +24,6 @@ a:visited {
 }
 
 /* BUTTONS */
-
 button,
 .button {
 	background: var(--main-color);
@@ -144,6 +142,7 @@ button:hover,
 .cart i {
 	padding: 0 10px;
 }
+
 .cart p {
 	padding: 0 10px;
 }
@@ -155,7 +154,9 @@ main,
 }
 
 /* for divs my css is shit feel free to change */
+
 /* Products Index */
+
 .products-container {
 	display: flex;
 	justify-content: center;
@@ -178,9 +179,8 @@ select {
 }
 
 .products-divider {
-	width: calc(
-		((20vw - 200px) * 3) + (207.5px * 4)
-	); /* Sets width equal to four products*/
+	width: calc(((20vw - 200px) * 3) + (207.5px * 4));
+	/* Sets width equal to four products*/
 	height: 2px;
 	background: #101010;
 	margin: 25px auto;
@@ -202,6 +202,7 @@ select {
 	height: 200px;
 	position: relative;
 }
+
 .product img {
 	width: 200px;
 	height: 200px;
@@ -247,6 +248,7 @@ select {
 .product form button {
 	width: 100%;
 }
+
 /* SINGLE PRODUCT */
 
 .product-info-container {
@@ -350,6 +352,7 @@ select {
 }
 
 /* Product Forms */
+
 .product-form {
 	display: flex;
 	justify-content: center;
@@ -462,6 +465,7 @@ select {
 }
 
 /* Media Queries */
+
 @media only screen and (max-width: 1250px) {
 	main,
 	.desktop-nav,
@@ -469,7 +473,6 @@ select {
 	.products-divider {
 		width: calc(((20vw - 200px) * 2) + (207.5px * 3));
 	}
-
 	.products-container {
 		width: calc(21vw * 3);
 	}
@@ -482,7 +485,6 @@ select {
 	.products-divider {
 		width: 665px;
 	}
-
 	.products-container {
 		justify-content: space-around;
 		width: 700px;
@@ -491,7 +493,6 @@ select {
 		width: 200px;
 		margin: 10px 15px;
 	}
-
 	.product-image {
 		display: flex;
 		flex-direction: column;
@@ -505,11 +506,9 @@ select {
 	.products-divider {
 		width: 500px;
 	}
-
 	.desktop-nav {
 		display: none;
 	}
-
 	.mobile-nav {
 		width: 500px;
 		margin: 0 auto;
@@ -562,29 +561,23 @@ select {
 		width: 200px;
 		margin: 10px 15px;
 	}
-
 	.product-info-container,
 	.reviews {
 		width: 90%;
 		margin: 10px auto;
 	}
-
 	.product-info {
 		width: 100%;
 	}
-
 	.product-image {
 		display: none;
 	}
-
 	.mobile-product-image {
 		display: initial;
 	}
-
 	.mobile-product-image img {
 		width: 100%;
 	}
-
 	.reviews .review-form form {
 		width: 100%;
 	}
@@ -601,30 +594,25 @@ select {
 		width: 90%;
 		margin: 0 auto;
 	}
-
 	.products-container {
 		margin-top: 10px;
 		justify-content: center;
 		width: 90%;
 		margin: 0 auto;
 	}
-
 	.products-container img {
 		width: 400px;
 		height: 400px;
 	}
-
 	.product {
 		width: 400px;
 		height: 500px;
 		margin: 10px 15px;
 	}
-
 	.product .image {
 		width: 400px;
 		height: 400px;
 	}
-
 	.product section {
 		width: 400px;
 	}
