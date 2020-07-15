@@ -6,6 +6,26 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const methodOverride = require(`method-override`);
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+cloudinary.config({
+	cloud_name: 'dyr49b2vd',
+	api_key: '361155261174323',
+	api_secret: 'nIKD8cEVq2ZJXNH9FzLm5RIBUT0',
+});
+
+const storage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: 'ecommerce',
+		format: async (req, file) => 'png', // supports promises as well
+		public_id: (req, file) => file.path,
+	},
+});
+
+const upload = multer({ storage: storage });
 
 // CURRENT PATH: /products
 
@@ -28,10 +48,25 @@ router.get(`/create`, (req, res) => {
 	res.render(`products/create`);
 });
 // ---------------------------------- CREATE Product  ---------------------------------------------/
-router.post(`/`, (req, res) => {
-	console.log(req.body);
+router.post(`/`, upload.single('img'), (req, res) => {
+	const file = req.file;
+	let path = 'https://picsum.photos/150/150';
+	if (file) {
+		path = file.path;
+		cloudinary.uploader.upload(file.path, function (result) {
+			console.log(file);
+		});
+	}
+	const productInfo = {
+		name: req.body.name,
+		description: req.body.description,
+		price: req.body.price,
+		category: req.body.category,
+		createdBy: req.body.createdBy,
+		img: path,
+	};
 
-	db.Products.create(req.body, (err, newProduct) => {
+	db.Products.create(productInfo, (err, newProduct) => {
 		if (err) return console.log(err);
 
 		res.redirect(`/products`);

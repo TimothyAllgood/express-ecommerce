@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 	firstName: { type: String, default: 'First' },
 	lastName: { type: String, default: 'Last' },
+	img: String,
 	isAdmin: Boolean,
 	cart: [{}],
 });

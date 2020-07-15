@@ -4,7 +4,12 @@
 <body>
 	<%- include('../partials/_header') %>
 	<main class="user-container">
-		<section class="hello-user"><h2>Welcome Back, <%= user.firstName %> </h2></section>
+		<section class="hello-user">
+			<h2>Welcome Back, <%= user.firstName %> </h2>
+			<div class="user-img">
+			<img src="<%= user.img %>" alt="">
+		</div>
+		</section>
 		<h3>Account Information</h3>
 	<% if(user && userId){if(userId.toString() === user._id.toString() || admin){ %> 
 		<p><strong>First Name:</strong> <%= user.firstName %></p>

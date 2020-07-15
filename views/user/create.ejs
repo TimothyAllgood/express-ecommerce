@@ -5,7 +5,7 @@
 	<body>
 		<%- include('../partials/_header') %>
 		<main class="account">
-			<form action="/users" method="POST">
+			<form action="/users" method="POST" enctype="multipart/form-data">
 				<section>
 					<input
 						type="text"
@@ -25,6 +25,7 @@
 					oninput="this.setCustomValidity('')"
 					required
 				/>
+				<input type="file" name="img" />
 				<button type="submit">Sign Up</button>
 				<p>
 					Already have an account?

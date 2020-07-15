@@ -7,10 +7,23 @@
 		<main>
 			<% if(admin){ %>
 
-			<form action="/products/ %>" method="POST" class="product-form">
+			<form
+				action="/products/ %>"
+				method="POST"
+				class="product-form"
+				enctype="multipart/form-data"
+			>
 				<section><h2>Add New Product</h2></section>
 				<input type="text" name="name" placeholder="Name" />
 				<input type="number" name="price" placeholder="Price" />
+				<label>
+					Category:
+					<select name="category">
+						<option value="Type One">Type One</option>
+						<option value="Type Two">Type Two</option>
+						<option value="Type Three">Type Three</option>
+					</select>
+				</label>
 				<textarea
 					type="text"
 					name="description"
@@ -18,6 +31,7 @@
 					rows="10"
 					class="product-text"
 				></textarea>
+				<input type="file" name="img" />
 				<input type="text" name="createdBy" value="<%=userId%>" hidden />
 				<button type=" submit">Create Product</button>
 			</form>

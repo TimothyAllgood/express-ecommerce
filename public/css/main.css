@@ -193,7 +193,7 @@ select {
 	align-items: center;
 	width: 20vw;
 	height: 300px;
-	margin: 5px;
+	margin: 10px 5px;
 	font-weight: 600;
 }
 
@@ -206,6 +206,7 @@ select {
 .product img {
 	width: 200px;
 	height: 200px;
+	object-fit: contain;
 }
 
 .product .image:hover .image-overlay {
@@ -383,6 +384,7 @@ select {
 	width: 50%;
 	padding: 25px 0;
 	background-color: var(--main-color);
+	color: #f1f1f1;
 	text-align: center;
 	margin-bottom: 10px;
 }
@@ -420,8 +422,51 @@ select {
 	color: #f1f1f1;
 	padding: 25px;
 	margin-bottom: 25px;
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
+	position: relative;
+	max-height: 200px;
+	overflow: hidden;
 }
 
+.user-img {
+	width: 23vw;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	justify-content: center;
+	margin-right: -25px;
+	margin-top: -25px;
+	margin-bottom: -25px;
+	background: #f1f1f1;
+	padding-left: 50px;
+	z-index: -2;
+}
+
+.hello-user::after {
+	content: ' ';
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 20vw;
+	z-index: -1;
+	background: var(--main-color);
+	transform-origin: bottom right;
+	-ms-transform: skew(-30deg, 0deg);
+	-webkit-transform: skew(-30deg, 0deg);
+	transform: skew(-30deg, 0deg);
+}
+
+.user-img img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 /* Account Forms */
 
 .account {
@@ -615,6 +660,13 @@ select {
 	}
 	.product section {
 		width: 400px;
+	}
+	.hello-user::after {
+		right: 40vw;
+	}
+
+	.user-img {
+		width: 45vw;
 	}
 }
 

@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 	app.locals.name = req.session.name;
 	app.locals.admin = req.session.admin;
 	app.locals.length = req.session.length;
+	app.locals.img = req.session.img;
 	next();
 });
 

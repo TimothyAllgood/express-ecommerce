@@ -44,11 +44,15 @@
 			<section class="mobile-profile">
 				<li class="profile-info">
 					<div class="mobile-toggle">
+						<% if(img) {%>
+							<img style="object-fit:cover;width: 35px; height: 35px;border-radius: 50%; border: 1px solid #a3a3a3; " src="<%= img %>" alt="">
+						<% } else{ %>  
 						<img
 							style="width: 35px;"
 							src="https://lh3.googleusercontent.com/proxy/MzOuHi_jQ8wMcHOn04sO5pZtBrRT-OrMPWKVS1x1QjF8RIco2T4NZ45znb0mUssKkWFa4gb1ACRvzAVCf6aRzxKQGIRTMsnJu5fYnJrIQtDULo5SE-2zNMNmeZjBP2ieEZTqVekPPA"
 							alt=""
 						/>
+						<% } %> 
 					</div>
 					<section class="mobile-profile-menu invisible">
 					<a href="/users/<%= userId%>">View Profile</a>
