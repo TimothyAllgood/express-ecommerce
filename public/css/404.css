@@ -1,26 +1,31 @@
 /* 404 page CSS */
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  padding: 0.5em;
-  overflow: auto;
-  flex-flow: row wrap;
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-pack: center;
+	justify-content: center;
+	padding: 0.5em;
+	overflow: auto;
+	flex-flow: row wrap;
 }
 
 canvas {
-  max-width: calc(100vw - 2em);
-  max-height: calc(100vh - 2em);
-  /*   border: 1px solid white; */
-  align-self: center;
-  cursor: move;
+	max-width: calc(100vw - 2em);
+	max-height: calc(100vh - 2em);
+	/*   border: 1px solid white; */
+	align-self: center;
+	cursor: move;
+}
+
+.desktop-nav {
+	margin-top: -200px !important;
 }

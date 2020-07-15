@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 // Index Route
 
 app.get('/', (req, res) => {
-	res.render('/products');
+	res.redirect('/products');
 });
 app.use(`/products`, productsController);
 app.use('/users', usersController);

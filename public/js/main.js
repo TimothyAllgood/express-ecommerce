@@ -12,6 +12,10 @@ const reviewStarsContain = document.querySelectorAll('.review .review-rating');
 const textArea = document.querySelector('.product-text');
 const form = document.querySelector('.product-form');
 
+// Mobile Menu
+const mobileMenuToggle = document.querySelector('.mobile-toggle');
+const mobileMenu = document.querySelector('.mobile-profile-menu');
+
 // Amount of stars equal to rating in db are updated with proper styling
 for (let i = 0; i < reviewStarsContain.length; i++) {
 	const reviewStars = reviewStarsContain[i].querySelectorAll(`i`);
@@ -43,14 +47,11 @@ function handleStarUpdate(e) {
 		}
 	}
 }
-// Changes Star Color and Updates Icon
-function changeStar(star, oldIcon, newIcon, color) {
-	star.classList.remove(oldIcon);
-	star.classList.add(newIcon);
-	star.style.color = color;
+if (form) {
+	form.addEventListener('submit', handleTextArea);
 }
 
-form.addEventListener('submit', handleTextArea);
+mobileMenuToggle.addEventListener('click', displayMenu);
 
 function handleTextArea(e) {
 	textAreaFinal = textArea.value.replace('/n', '<br/>');
@@ -58,4 +59,15 @@ function handleTextArea(e) {
 	alert(textArea.value);
 	e.preventDefault();
 	this.submit();
+}
+
+function displayMenu() {
+	mobileMenu.classList.toggle('invisible');
+}
+
+// Changes Star Color and Updates Icon
+function changeStar(star, oldIcon, newIcon, color) {
+	star.classList.remove(oldIcon);
+	star.classList.add(newIcon);
+	star.style.color = color;
 }
