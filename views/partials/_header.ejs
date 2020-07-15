@@ -1,10 +1,11 @@
 <nav class="desktop-nav">
 	<div class="logo">
-		<a href="/products"><h2>Express Ecommerce</h2></a>
+		<a href="/products"><img src="/assets/logo.png" alt="" /></a>
 	</div>
 	<ul>
+		<%if(userId) {%>
 		<li><a href="/users">Users</a></li>
-		<li><a href="/products">Products</a></li>
+		<% } %> 
 		<%if(userId) {%>
 		<!-- If user is logged in display -->
 		<div class="profile-menu">
@@ -40,15 +41,31 @@
 		<%if(userId) {%>
 		<!-- If user is logged in display -->
 		<div class="profile-menu">
-			<li class="profile-info">
-				<a href="/users/<%= userId%>">Hello, <%= name%></a>
-			</li>
-			<div class="profile-hover">
-				<li>
+			<section class="mobile-profile">
+				<li class="profile-info">
+					<div class="mobile-toggle">
+						<img
+							style="width: 35px;"
+							src="https://lh3.googleusercontent.com/proxy/MzOuHi_jQ8wMcHOn04sO5pZtBrRT-OrMPWKVS1x1QjF8RIco2T4NZ45znb0mUssKkWFa4gb1ACRvzAVCf6aRzxKQGIRTMsnJu5fYnJrIQtDULo5SE-2zNMNmeZjBP2ieEZTqVekPPA"
+							alt=""
+						/>
+					</div>
+					<section class="mobile-profile-menu invisible">
+					<a href="/users/<%= userId%>">View Profile</a>
 					<form action="/users/logout" method="POST">
-						<button type="submit">Log Out</button>
+						<input type="submit" value="Log Out"></input>
 					</form>
+				</section>
 				</li>
+				<a href="/users/<%= userId %>/cart" class="cart-btn-container">
+					<div class="cart">
+						<i class="fas fa-shopping-cart"></i>
+						<p><%= length || 0 %></p>
+					</div>
+				</a>
+			</section>
+			<div class="profile-hover">
+				<li></li>
 			</div>
 		</div>
 		<%} else {%>

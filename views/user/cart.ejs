@@ -8,7 +8,9 @@
 			<!-- Total -->
 
 			<% let total = 0%> <% if (user._id.toString() === userId.toString()) { %>
-			<h3>Shopping Cart</h3>
+			<section class="hello-user">
+				<h3>Shopping Cart</h3>
+			</section>
 			<section class="cart-container">
 				<!--  Displays User Cart -->
 				<% for(let item of cartItems){ %>
@@ -27,7 +29,7 @@
 				</form>
 				<% } %>
 			</section>
-			<p class="total">Total: $<%= total %></p>
+			<h3 class="total">Total: $<%= total %></h3>
 			<% } else {%>
 			<h2>You must login to view your cart.</h2>
 			<% } %>
