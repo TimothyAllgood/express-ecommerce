@@ -7,6 +7,7 @@ const productsController = require(`./controllers/productsController`); // requi
 const usersController = require('./controllers/usersController'); // user controller for user routes
 const { Products } = require('./models');
 const PORT = process.env.PORT || 4000; // set port
+require('dotenv').config();
 app.set('view engine', 'ejs'); // set a view engine, ejs to display and render
 
 app.use(express.static(__dirname + '/public')); // for css and images

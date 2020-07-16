@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+require('dotenv').config();
 const db = require('../models');
 const { update } = require('../models/User');
 
@@ -11,9 +11,9 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 // Allows use of cloudinary
 cloudinary.config({
-	cloud_name: 'dyr49b2vd',
-	api_key: '361155261174323',
-	api_secret: 'nIKD8cEVq2ZJXNH9FzLm5RIBUT0',
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_KEY,
+	api_secret: process.env.CLOUD_SECRET,
 });
 
 const storage = new CloudinaryStorage({

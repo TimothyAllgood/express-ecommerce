@@ -1,7 +1,8 @@
 // current path: /products
 
 // show
-
+require('dotenv').config();
+console.log(process.env.CLOUD_KEY);
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
@@ -11,9 +12,9 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 cloudinary.config({
-	cloud_name: 'dyr49b2vd',
-	api_key: '361155261174323',
-	api_secret: 'nIKD8cEVq2ZJXNH9FzLm5RIBUT0',
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_KEY,
+	api_secret: process.env.CLOUD_SECRET,
 });
 
 const storage = new CloudinaryStorage({

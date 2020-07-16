@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 const MONGODB_URI =
-	'mongodb+srv://timothy:yJ51plVHGzphoFGx@express-ecommerce.0mskm.mongodb.net/express-ecommerce?retryWrites=true&w=majority' ||
-	'mongodb://localhost:27017/user-auth';
+	process.env.MONGODB_URL || 'mongodb://localhost:27017/user-auth';
 
 mongoose
 	.connect(MONGODB_URI, {
@@ -10,7 +10,7 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-	.then(() => console.log('Mongoose successfully connected'))
+	.then(() => console.log('Mongoose successfully connected: ', MONGODB_URI))
 	.catch((err) => console.log(err));
 
 module.exports = {
