@@ -135,6 +135,7 @@ router.get('/edit/:id', (req, res) => {
 
 // Displays Sign In Form
 router.get('/signin', (req, res) => {
+	req.body.email = null;
 	res.render('user/signin');
 });
 
@@ -143,6 +144,7 @@ router.get('/signin', (req, res) => {
 router.post('/signin', (req, res) => {
 	db.User.findOne({ email: req.body.email }, (err, currentUser) => {
 		if (err) console.log(err);
+		console.log(req.body.email);
 		if (currentUser) {
 			// If user exists
 			if (currentUser.password === req.body.password) {
@@ -159,12 +161,12 @@ router.post('/signin', (req, res) => {
 			} else {
 				// If password doesn't match
 				req.session.error = 'Incorrect Password';
-				res.render('user/signin');
+				res.redirect('/users/signin');
 			}
 		} else {
 			// If user does not exist
 			req.session.error = 'Incorrect Username';
-			res.render('user/signin');
+			res.redirect('/users/signin');
 		}
 	});
 });
