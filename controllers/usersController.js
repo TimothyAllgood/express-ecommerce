@@ -135,6 +135,7 @@ router.get('/edit/:id', (req, res) => {
 
 // Displays Sign In Form
 router.get('/signin', (req, res) => {
+	req.session.error = null;
 	res.render('user/signin');
 });
 
