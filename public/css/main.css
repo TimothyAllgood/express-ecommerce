@@ -456,9 +456,11 @@ select {
 	z-index: -1;
 	background: var(--main-color);
 	transform-origin: bottom right;
-	-ms-transform: skew(-30deg, 0deg);
-	-webkit-transform: skew(-30deg, 0deg);
-	transform: skew(-30deg, 0deg);
+	transform: skew(-15deg, 0deg);
+	-webkit-transform: skew(-15deg, 0deg);
+	-moz-transform: skew(-15deg, 0deg);
+	-ms-transform: skew(-15deg, 0deg);
+	-o-transform: skew(-15deg, 0deg);
 }
 
 .user-img img {
@@ -480,12 +482,55 @@ select {
 .account form {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .account input,
 .account button {
 	padding: 10px;
 	margin-bottom: 10px;
+}
+
+.cropper {
+	display: none;
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.flex {
+	display: flex;
+}
+
+.cropper button {
+	margin-top: 25px;
+}
+
+.inner-cropper {
+	display: flex;
+}
+
+.inner-cropper img {
+	display: block;
+	width: 100%;
+}
+
+.inner-cropper .actual-cropper {
+	width: 50vw;
+}
+
+.preview {
+	max-width: 200px;
+	max-height: 200px;
+	overflow: hidden;
+	background: #a3a3a3;
+	margin-left: 15px;
 }
 
 /* CART */
@@ -626,6 +671,11 @@ select {
 	.reviews .review-form form {
 		width: 100%;
 	}
+
+	.user-img {
+		width: 35vw;
+		padding-left: 50px;
+	}
 }
 
 @media only screen and (max-width: 600px) {
@@ -667,6 +717,7 @@ select {
 
 	.user-img {
 		width: 45vw;
+		padding-left: 0;
 	}
 }
 

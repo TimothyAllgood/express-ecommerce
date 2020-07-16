@@ -7,15 +7,10 @@
 		<main class="account">
 			<form action="/users" method="POST" enctype="multipart/form-data">
 				<section>
-					<input
-						type="text"
-						name="firstName"
-						placeholder="First Name"
-						required
-					/>
-					<input type="text" name="lastName" placeholder="Last Name" required />
+					<input type="text" name="firstName" placeholder="First Name" />
+					<input type="text" name="lastName" placeholder="Last Name" />
 				</section>
-				<input type="email" name="email" placeholder="Enter Email" required />
+				<input type="email" name="email" placeholder="Enter Email" />
 				<input
 					type="password"
 					name="password"
@@ -23,9 +18,17 @@
 					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 					oninvalid="this.setCustomValidity('Password must be at least 8 characters long and contain one uppercase/lowercase letter and one number.')"
 					oninput="this.setCustomValidity('')"
-					required
 				/>
-				<input type="file" name="img" />
+				<label style="display: flex; flex-direction: column;">
+					Profile Image:
+					<input type="file" name="img" />
+					<img
+						class="test"
+						src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg"
+						style="width: 200px; height: 200px; margin-bottom: 15px;"
+					/>
+				</label>
+
 				<button type="submit">Sign Up</button>
 				<p>
 					Already have an account?
@@ -34,5 +37,16 @@
 				</p>
 			</form>
 		</main>
+
+		<div class="cropper">
+			<div class="inner-cropper">
+				<div class="actual-cropper">
+					<img id="image" src="/assets/main-page.png" alt="" />
+				</div>
+				<div class="preview" style="width: 200px; height: 200px;"></div>
+			</div>
+			<button class="crop">Crop</button>
+		</div>
+		<script src="/js/crop.js"></script>
 	</body>
 </html>
