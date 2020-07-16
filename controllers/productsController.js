@@ -36,7 +36,6 @@ router.get(`/`, (req, res) => {
 	// step one: get the data
 	db.Products.find({}, (err, allProducts) => {
 		if (err) return console.log(err);
-		console.log(`All Products: `, allProducts);
 		res.render(`products/index`, {
 			products: allProducts,
 		});
@@ -79,18 +78,17 @@ router.post(`/`, upload.single('img'), (req, res) => {
 router.get('/:id', function (req, res) {
 	if (req.session.userId) {
 		db.User.findByIdAndUpdate(
+			// Push item into User recent array when page is viewed
 			req.session.userId,
 			{
 				$push: { recent: { $each: [req.params.id], $slice: -3 } },
 			},
 			{ new: true },
 			(err, user) => {
-				console.log(user.recent);
 				if (err) console.log(err);
 				db.Products.findById(req.params.id, (errTwo, foundProduct) => {
 					if (errTwo) return console.log(errTwo);
-					console.log(req.params.id);
-					console.log(foundProduct);
+
 					res.render('products/show.ejs', {
 						//second param must be an object
 						product: foundProduct,
@@ -101,8 +99,7 @@ router.get('/:id', function (req, res) {
 	} else {
 		db.Products.findById(req.params.id, (err, foundProduct) => {
 			if (err) return console.log(err);
-			console.log(req.params.id);
-			console.log(foundProduct);
+
 			res.render('products/show.ejs', {
 				//second param must be an object
 				product: foundProduct,
@@ -150,7 +147,6 @@ router.delete('/:id', (req, res) => {
 	db.Products.findByIdAndDelete(req.params.id, (err, deletedProducts) => {
 		if (err) return console.log(err);
 
-		console.log(`Deleted: `, deletedProducts);
 		res.redirect('/products');
 	});
 });

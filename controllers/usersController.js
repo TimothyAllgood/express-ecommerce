@@ -92,7 +92,6 @@ router.post('/', upload.single('img'), (req, res) => {
 				req.session.name = createdUser.firstName + ' ' + createdUser.lastName;
 				req.session.admin = createdUser.isAdmin; // Sets session admin status to loggedIn admin status
 				req.session.img = createdUser.img;
-				if (err) console.log(err);
 				res.redirect(`/users/${createdUser._id}`);
 			});
 		}
@@ -144,7 +143,7 @@ router.get('/signin', (req, res) => {
 router.post('/signin', (req, res) => {
 	db.User.findOne({ email: req.body.email }, (err, currentUser) => {
 		if (err) console.log(err);
-		console.log(req.body.email);
+
 		if (currentUser) {
 			// If user exists
 			if (currentUser.password === req.body.password) {
@@ -160,12 +159,12 @@ router.post('/signin', (req, res) => {
 				res.redirect(`/users/${req.session.userId}`); // Redirects to logged in users page
 			} else {
 				// If password doesn't match
-				req.session.error = 'Incorrect Password';
+				req.session.error = 'Incorrect Password'; // Error message when password doesn't match
 				res.redirect('/users/signin');
 			}
 		} else {
 			// If user does not exist
-			req.session.error = 'Incorrect Username';
+			req.session.error = 'Incorrect Username'; // Error message when no user found
 			res.redirect('/users/signin');
 		}
 	});
@@ -176,11 +175,11 @@ router.get('/:id', (req, res) => {
 	db.User.findById(req.params.id, (err, foundUser) => {
 		let recentItems = foundUser.recent;
 		db.Products.find(
+			// Query products collection to display the items in users recent items array
 			{
-				_id: { $in: [recentItems[0], recentItems[1], recentItems[2]] },
+				_id: { $in: [recentItems[0], recentItems[1], recentItems[2]] }, // Show the recent items
 			},
 			(err, items) => {
-				console.log(items);
 				res.render('user/show', {
 					user: foundUser,
 					items,
