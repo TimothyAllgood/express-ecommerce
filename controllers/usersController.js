@@ -135,7 +135,6 @@ router.get('/edit/:id', (req, res) => {
 
 // Displays Sign In Form
 router.get('/signin', (req, res) => {
-	req.session.error = null;
 	res.render('user/signin');
 });
 
@@ -147,6 +146,7 @@ router.post('/signin', (req, res) => {
 		if (currentUser) {
 			// If user exists
 			if (currentUser.password === req.body.password) {
+				req.session.error = null;
 				// Checks if password matches password for user in database
 				req.session.userId = currentUser._id; // Sets session userId to loggedIn userId
 				req.session.email = currentUser.email; // Sets session email to loggedIn email
