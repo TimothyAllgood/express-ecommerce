@@ -22,7 +22,7 @@
 		<%if (user.isAdmin) {%>
 			<p><%= user.firstName %> has admin privileges</p>
 		<%} else if(admin) {%>
-			<form action="/users/<%= user._id %>?_method=PUT" method="POST">
+			<form action="/users/<%= user._id %>/admin?_method=PUT" method="POST">
 				<button type="submit">Add <%= user.firstName %> as admin</button>
 			</form>
 		<%}%>	

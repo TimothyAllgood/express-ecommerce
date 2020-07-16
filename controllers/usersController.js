@@ -189,7 +189,7 @@ router.get('/:id', (req, res) => {
 	});
 });
 // Add Admin Rights - Admins will be able to make any non admin users into admins
-router.put('/:id', (req, res) => {
+router.put('/:id/admin', (req, res) => {
 	// Finds user by id and updates isAdmin key to equal true
 	db.User.findByIdAndUpdate(
 		req.params.id,
