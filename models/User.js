@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
 	img: String,
 	isAdmin: Boolean,
 	cart: [{}],
+	recent: [],
 });
 
 const User = mongoose.model('User', userSchema);

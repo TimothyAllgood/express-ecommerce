@@ -10,9 +10,12 @@
 		<!-- If user is logged in display -->
 		<div class="profile-menu">
 			<li class="profile-info">
-				<a href="/users/<%= userId%>">Hello, <%= name%></a>
+			<p class="profile-toggle" style="font-weight: 600;">Hello, <%= name%></p>	
 			</li>
-			<div class="profile-hover">
+			<div class="profile-hover hide">
+				<li>
+					<a href="/users/<%= userId%>">View Profile</a>
+				</li>
 				<li>
 					<form action="/users/logout" method="POST">
 						<button type="submit">Log Out</button>

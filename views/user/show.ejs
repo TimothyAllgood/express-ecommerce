@@ -10,8 +10,10 @@
 			<img src="<%= user.img %>" alt="">
 		</div>
 		</section>
-		<h3>Account Information</h3>
+		
 	<% if(user && userId){if(userId.toString() === user._id.toString() || admin){ %> 
+		<div class="user-info">
+		<h3>Account Information</h3>
 		<p><strong>First Name:</strong> <%= user.firstName %></p>
 		<p><strong> Name: </strong><%= user.lastName %></p>
 		<p><strong>Email:</strong> <%= user.email %></p>
@@ -24,6 +26,29 @@
 				<button type="submit">Add <%= user.firstName %> as admin</button>
 			</form>
 		<%}%>	
+	</div>
+		
+		<h3 class="recent">Recently Viewed Items</h3>
+		<section class="recent-divider"></section>
+		<% if(items.length) {%> 
+		<div class="recent-items">
+			<% for(let item of items) {%>
+				<div class="recent-item">
+				<a href="/products/<%=item._id%>">
+					<div class="recent-image">
+						<div class="recent-overlay">
+							<p>View Product</p>
+						</div>
+					<img src="<%=item.img%>" alt="">
+					</div>
+				</a>
+				<p><%= item.name %> </p>
+			</div>
+			<% } %>  
+		</div>
+		<% }  else {%>
+			<p>No recently viewed items.</p>
+		<% } %>  
 	<% } else{ %>
 		<h3>You are not <%= user.firstName %>! Get out of here! </h3>
 	<% } } else { %>

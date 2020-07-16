@@ -157,11 +157,13 @@ router.post('/signin', (req, res) => {
 				res.redirect(`/users/${req.session.userId}`); // Redirects to logged in users page
 			} else {
 				// If password doesn't match
-				res.send('Wrong password');
+				req.session.error = 'Incorrect Password';
+				res.render('user/signin');
 			}
 		} else {
 			// If user does not exist
-			res.send('No user found');
+			req.session.error = 'Incorrect Username';
+			res.render('user/signin');
 		}
 	});
 });
@@ -169,13 +171,21 @@ router.post('/signin', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	db.User.findById(req.params.id, (err, foundUser) => {
-		if (err) console.log(err);
-		res.render('user/show', {
-			user: foundUser,
-		});
+		let recentItems = foundUser.recent;
+		db.Products.find(
+			{
+				_id: { $in: [recentItems[0], recentItems[1], recentItems[2]] },
+			},
+			(err, items) => {
+				console.log(items);
+				res.render('user/show', {
+					user: foundUser,
+					items,
+				});
+			}
+		);
 	});
 });
-
 // Add Admin Rights - Admins will be able to make any non admin users into admins
 router.put('/:id', (req, res) => {
 	// Finds user by id and updates isAdmin key to equal true

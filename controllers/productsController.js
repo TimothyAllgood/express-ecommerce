@@ -77,15 +77,38 @@ router.post(`/`, upload.single('img'), (req, res) => {
 // ---------------------------------- SHOW SINGLE PRODUCT  ---------------------------------------------//
 // single route to product to show
 router.get('/:id', function (req, res) {
-	db.Products.findById(req.params.id, (err, foundProduct) => {
-		if (err) return console.log(err);
-		console.log(req.params.id);
-		console.log(foundProduct);
-		res.render('products/show.ejs', {
-			//second param must be an object
-			product: foundProduct,
+	if (req.session.userId) {
+		db.User.findByIdAndUpdate(
+			req.session.userId,
+			{
+				$push: { recent: { $each: [req.params.id], $slice: -3 } },
+			},
+			{ new: true },
+			(err, user) => {
+				console.log(user.recent);
+				if (err) console.log(err);
+				db.Products.findById(req.params.id, (errTwo, foundProduct) => {
+					if (errTwo) return console.log(errTwo);
+					console.log(req.params.id);
+					console.log(foundProduct);
+					res.render('products/show.ejs', {
+						//second param must be an object
+						product: foundProduct,
+					});
+				});
+			}
+		);
+	} else {
+		db.Products.findById(req.params.id, (err, foundProduct) => {
+			if (err) return console.log(err);
+			console.log(req.params.id);
+			console.log(foundProduct);
+			res.render('products/show.ejs', {
+				//second param must be an object
+				product: foundProduct,
+			});
 		});
-	});
+	}
 });
 
 // ---------------------------------- SHOW ALL PRODUCTS  ---------------------------------------------//
@@ -101,24 +124,22 @@ router.get('/:id', function (req, res) {
 router.get(`/:id/edit`, (req, res) => {
 	db.Products.findById(req.params.id, (err, foundProducts) => {
 		if (err) return console.log(err);
-		res.render(`edit`, {
-			editProduct: foundProducts,
+		res.render(`products/edit`, {
+			product: foundProducts,
 		});
 	});
 });
 
 // (also needs method override like delete) EDIT PRODUCT (PART TWO: UPDATE) send update/edit:
 // this time instead of ?_method=DELETE we use ?_method=PUT
-router.put(`/:id`, (req, res) => {
-	productsArray[req.params.id] = req.body;
-
+router.put(`/:id/edit`, (req, res) => {
 	db.Products.findByIdAndUpdate(
 		req.params.id,
 		req.body,
 		{ new: true },
 		(err, foundProducts) => {
 			if (err) return console.log(err);
-			res.redirect(`/index`);
+			res.redirect(`/products`);
 		}
 	);
 });

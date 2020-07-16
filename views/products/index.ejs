@@ -31,9 +31,13 @@
         <p>$<%= product.price %></p>
       </section>
       <%if(admin){ %>
+        <div class="buttons">
       <form method="POST" action="/products/<%= product._id %>?_method=DELETE">
         <button type="submit">Delete</button>
         </form>
+        <a href="/products/<%= product._id %>/edit">
+          <button >Edit</button></a>
+        </div>
         <%}%>
     </div>
     <!--  -->

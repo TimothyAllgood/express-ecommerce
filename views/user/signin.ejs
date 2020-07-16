@@ -6,13 +6,18 @@
 		<%- include('../partials/_header') %>
 		<main class="account">
 			<form action="/users/signin" method="POST">
+				<% if(error) {%>
+				<p class="error"><%= error %></p>
+				<% } %>
 				<input type="email" name="email" placeholder="Enter Email" required />
+				<div class="err"></div>
 				<input
 					type="password"
 					name="password"
 					placeholder="Enter Password"
 					required
 				/>
+
 				<button type="submit">Sign In</button>
 				<p>
 					Don't have an account yet?
@@ -21,5 +26,13 @@
 				</p>
 			</form>
 		</main>
+		<script>
+			const fetchExp = async () => {
+				const resp = await fetch('/users/signin');
+				console.log(resp);
+			};
+
+			fetchExp();
+		</script>
 	</body>
 </html>

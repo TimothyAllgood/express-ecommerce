@@ -12,6 +12,10 @@ const reviewStarsContain = document.querySelectorAll('.review .review-rating');
 const textArea = document.querySelector('.product-text');
 const form = document.querySelector('.product-form');
 
+// Desktop Menu
+const desktopToggle = document.querySelector('.profile-toggle');
+const desktopMenu = document.querySelector('.profile-hover');
+
 // Mobile Menu
 const mobileMenuToggle = document.querySelector('.mobile-toggle');
 const mobileMenu = document.querySelector('.mobile-profile-menu');
@@ -32,6 +36,14 @@ if (rating) {
 	// Changes colors of amount of stars clicked
 	rating.addEventListener('click', handleStarUpdate);
 }
+if (form) {
+	form.addEventListener('submit', handleTextArea);
+}
+
+mobileMenuToggle.addEventListener('click', displayMenu);
+
+desktopToggle.addEventListener('click', displayDesktopMenu);
+
 function handleStarUpdate(e) {
 	let value = null;
 	if (e.target.type === 'radio') {
@@ -47,11 +59,6 @@ function handleStarUpdate(e) {
 		}
 	}
 }
-if (form) {
-	form.addEventListener('submit', handleTextArea);
-}
-
-mobileMenuToggle.addEventListener('click', displayMenu);
 
 function handleTextArea(e) {
 	textAreaFinal = textArea.value.replace('/n', '<br/>');
@@ -59,6 +66,10 @@ function handleTextArea(e) {
 	alert(textArea.value);
 	e.preventDefault();
 	this.submit();
+}
+
+function displayDesktopMenu() {
+	desktopMenu.classList.toggle('hide');
 }
 
 function displayMenu() {
