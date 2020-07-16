@@ -5,7 +5,6 @@ const methodOverride = require('method-override'); // require method override fo
 const productsController = require(`./controllers/productsController`); // require products controller for product routes
 // adding comment to test github
 const usersController = require('./controllers/usersController'); // user controller for user routes
-const { Products } = require('./models');
 const PORT = process.env.PORT || 4000; // set port
 
 app.set('view engine', 'ejs'); // set a view engine, ejs to display and render

@@ -5,6 +5,9 @@
 	<body>
 		<%- include('../partials/_header') %>
 		<main class="account">
+			<% if(error){ %>
+			<h3><%= error %></h3>
+			<% } %>
 			<form action="/users" method="POST" enctype="multipart/form-data">
 				<section>
 					<input

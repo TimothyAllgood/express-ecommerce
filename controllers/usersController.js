@@ -73,6 +73,7 @@ router.post('/', upload.single('img'), (req, res) => {
 		if (err) console.log(err);
 		if (existingUser) {
 			// If user exists do this
+			req.session.error = 'A user with that email already exists.';
 			res.redirect('/users/create');
 		} else {
 			// If user does not exist create User

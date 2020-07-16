@@ -43,7 +43,6 @@ imageUpload.addEventListener('change', (e) => {
 		cropper.getCroppedCanvas(cropper.getData);
 		cropper.getCroppedCanvas().toBlob(function (blob) {
 			newBlob = blob;
-			console.log(blob);
 			const blobUrl = URL.createObjectURL(blob);
 			test.src = blobUrl;
 		});
@@ -58,23 +57,21 @@ form.addEventListener('submit', (e) => {
 		formData.set('img', newBlob, 'blob.png');
 	}
 
-	form.addEventListener('formdata', (e) => {
-		console.log('formdata fired');
-		console.log(formData);
-		// Get the form data from the event object
-		let data = formData;
-
-		// submit the data via XHR
-		var request = new XMLHttpRequest();
-
-		if (request.status == 0) {
-			// when completed we can move away
-			window.location = '/products';
-		}
-
-		request.open('POST', '/users');
-		request.send(data);
-	});
+	fetch('/users', {
+		method: 'POST',
+		redirect: 'follow',
+		body: formData,
+	})
+		.then((response) => {
+			response.text();
+			if (response.redirected) {
+				window.location.href = response.url;
+			}
+		})
+		.then((result) => {
+			console.log('Success:', result);
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
 });
-
-console.log(image.value);
