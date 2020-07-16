@@ -38,6 +38,18 @@ This simple Ecommerce CMS, allows users to view a page of products. Users with A
 - CSS
 - Javascript
 
+## Required Packages
+
+Run npm i to install all packages.
+
+- Express
+- Mongoose
+- EJS
+- Method-override
+- Express-session
+- Multer
+- Cloudinary
+
 ## Accredited Work
 
 ### Dmitriy Zagoruyko

@@ -24,7 +24,7 @@ const storage = new CloudinaryStorage({
 		public_id: (req, file) => file.path,
 	},
 });
-
+// Multer Storage
 const upload = multer({ storage: storage });
 
 // Shows All Users
@@ -44,9 +44,10 @@ router.get('/create', (req, res) => {
 
 // Creates new user (sign up)
 router.post('/', upload.single('img'), (req, res) => {
-	const file = req.file;
-	let path = 'https://picsum.photos/150/150';
+	const file = req.file; // uploaded image
+	let path = 'https://picsum.photos/150/150'; // default image
 	if (file) {
+		// if there is an uploaded image upload to cloudinary
 		path = file.path;
 		cloudinary.uploader.upload(file.path, function (result) {
 			console.log(file);
@@ -67,6 +68,7 @@ router.post('/', upload.single('img'), (req, res) => {
 
 		return adminCheck[adminValue] || adminCheck['default'];
 	}
+
 	db.User.findOne({ email: req.body.email }, (err, existingUser) => {
 		if (err) console.log(err);
 		if (existingUser) {
@@ -83,8 +85,15 @@ router.post('/', upload.single('img'), (req, res) => {
 				isAdmin: setAdmin(req.body.email),
 			};
 			db.User.create(userInfo, (err, createdUser) => {
+				// Automatically logs user in after they create an account
 				if (err) console.log(err);
-				res.redirect('/products');
+				req.session.userId = createdUser._id; // Sets session userId to loggedIn userId
+				req.session.email = createdUser.email; // Sets session email to loggedIn email
+				req.session.name = createdUser.firstName + ' ' + createdUser.lastName;
+				req.session.admin = createdUser.isAdmin; // Sets session admin status to loggedIn admin status
+				req.session.img = createdUser.img;
+				if (err) console.log(err);
+				res.redirect(`/users/${createdUser._id}`);
 			});
 		}
 	});
@@ -100,7 +109,6 @@ router.get('/edit/:id', (req, res) => {
 
 // Edits User
 router.put('/:id', (req, res) => {
-	// Checks If User already Exists
 	db.User.findByIdAndUpdate(
 		req.params.id,
 		req.body,
@@ -168,7 +176,7 @@ router.get('/:id', (req, res) => {
 	});
 });
 
-// Add Admin Rights
+// Add Admin Rights - Admins will be able to make any non admin users into admins
 router.put('/:id', (req, res) => {
 	// Finds user by id and updates isAdmin key to equal true
 	db.User.findByIdAndUpdate(
@@ -202,6 +210,7 @@ router.put('/:id/addToCart/:name&:price&:productId', (req, res) => {
 		req.params.id,
 		{
 			$push: {
+				// Pushes product info from params into logged in user's cart
 				cart: {
 					productName: req.params.name,
 					productPrice: req.params.price,
@@ -212,7 +221,7 @@ router.put('/:id/addToCart/:name&:price&:productId', (req, res) => {
 		{ new: true },
 		(err, user) => {
 			if (err) console.log(err);
-			req.session.length++;
+			req.session.length++; // Increments Cart Length for display purposes
 			res.redirect(`/users/${user._id}/cart`);
 		}
 	);
@@ -228,7 +237,7 @@ router.put('/:id/removeFromCart/:name', (req, res) => {
 		{ new: true },
 		(err, user) => {
 			if (err) console.log(err);
-			req.session.length--;
+			req.session.length--; // Decrements Cart Length for display purposes
 			res.redirect(`/users/${user._id}/cart`);
 		}
 	);

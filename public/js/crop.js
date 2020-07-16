@@ -1,4 +1,5 @@
-// Uses cropper.js
+// Uses cropper.js https://fengyuanchen.github.io/cropperjs/
+// Info on XMLHttpRequests from https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 
 const form = document.querySelector('form');
 const cropperContainer = document.querySelector('.cropper');
@@ -14,7 +15,10 @@ imageUpload.addEventListener('change', (e) => {
 	console.log(e.target.files);
 	image.src = URL.createObjectURL(event.target.files[0]);
 
+	// Cropper will display preview image here
 	const preview = document.querySelector('.preview');
+
+	// Creates New Cropper
 	const cropper = new Cropper(image, {
 		viewMode: 2,
 		aspectRatio: 1 / 1,
@@ -34,19 +38,14 @@ imageUpload.addEventListener('change', (e) => {
 	cropBtn.addEventListener('click', () => {
 		cropperContainer.classList.remove('flex');
 		const test = document.querySelector('.test');
-		// console.log(cropper.getCroppedCanvas().toDataURL('image/png'));
 
 		cropper.getCroppedCanvas();
 		cropper.getCroppedCanvas(cropper.getData);
 		cropper.getCroppedCanvas().toBlob(function (blob) {
-			// newBlob = new File([blob], 'blob.png');
 			newBlob = blob;
 			console.log(blob);
-			var blobUrl = URL.createObjectURL(blob);
-
+			const blobUrl = URL.createObjectURL(blob);
 			test.src = blobUrl;
-
-			// Pass the image file name as the third parameter if necessary.
 		});
 	});
 });
@@ -59,18 +58,11 @@ form.addEventListener('submit', (e) => {
 		formData.set('img', newBlob, 'blob.png');
 	}
 
-	// console.log(newBlob);
-	// for (var value of formData) {
-	// 	console.log(value);
-	// }
 	form.addEventListener('formdata', (e) => {
 		console.log('formdata fired');
 		console.log(formData);
 		// Get the form data from the event object
 		let data = formData;
-		for (var value of data) {
-			console.log(value);
-		}
 
 		// submit the data via XHR
 		var request = new XMLHttpRequest();
