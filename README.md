@@ -43,19 +43,23 @@ This simple Ecommerce CMS, allows users to view a page of products. Users with A
 ### Dmitriy Zagoruyko
 
 - Products
-- Model
-- Views
-- Controller
+  - Model
+  - Views
+  - Controller
 - 404 & Middleware
-- Populating DB and implentation
+- Populating DB and Implementation
 
 ### Timothy Allgood
 
 - Users
-- Model
-- Views
-- Controller
-- Authentication
+  - Model
+  - Views
+  - Controller
+  - Authentication
+- Products
+  - Views
 - CSS
 - 404 & Middleware
-- Populating DB and implentation
+- Populating DB and Implementation
+- Image Uploads and Cropping
+- Front End Javascript
