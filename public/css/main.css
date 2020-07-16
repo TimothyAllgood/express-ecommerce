@@ -540,8 +540,12 @@ select {
 }
 
 .recent-image {
-	width: 100%;
+	width: 150px;
 	position: relative;
+}
+
+.recent-image img {
+	width: 100%;
 }
 
 .recent-overlay {
